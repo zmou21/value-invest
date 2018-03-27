@@ -4,9 +4,45 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Value Invest</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="shortcut icon" href="http://static.wixstatic.com/media/2143cf_ab4e391b4a264f4d97d870e5ee40008d~mv2.png"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   </head>
   <body>
+    <div class="grid-container">
+      <div class="left">
+        <a href="index.html" class="brand-logo"><img src="images/placeholder.png" alt="Moumen Logo Credit:logoMakr" id="logo"></a>
+        <h2 id="logo_name">MOUMEN</h2>
+        <div id="links">
+          <ul class="center hide-on-med-and-down">
+            <!-- <li class="side-bar"><a href="sass.html">Home</a></li> -->
+            <li class="side-bar"><a href="portfolio_page.html">PROFILE</a></li>
+            <li class="side-bar"><a href="contact.html">ANALYSIS</a></li>
+          </ul>
+        </div>
+        <footer>
+          &copy 2018 the moumen group
+        </footer>
+      </div>
 
+      <div class="right">
+        <div class="search">
+          <!-- action="dashboard.html" -->
+          <form id="search-form">
+            Enter Ticker: <input name="ticker-search" id="ticker" placeholder="Add a todo" type="text" />
+            <button type="submit">Search</button>
+          </form>
+          <a href="#">logout</a>
+        </div>
+        <div id="append-stock">
+
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="js/search_fe.js"></script>
   </body>
 </html>
