@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Value Invest</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="shortcut icon" href="http://static.wixstatic.com/media/2143cf_ab4e391b4a264f4d97d870e5ee40008d~mv2.png"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+<!-- Parallax effect -->
+    <div class="bgimg-1">
+      <div class="caption">
+          <h3 style="color: white">The Best Value Investing Platform on the Web!</h3>
+          <a href="dashboard.html"><button type="button" name="button">Get Started!</button></a>
+      </div>
+      <!-- login and sign up buttons -->
+        <!-- Login links -->
+        <div class="login">
+        <!-- logo -->
+          <div class="logo">
+              <img src="images/placeholder.png" alt="logo" width="200px" height="75px">
+          </div>
+
+          <span id="loginbtn"><a href="#login" class="linkstyle">login</a></span>
+          <span id="signupbtn"><a href="#signup" class="linkstyle">sign-up</a></span>
+        </div>
+
+        <!-- The Login Modal -->
+        <div id="myModal" class="modal">
+          <div class="modal-content" id="login">
+            <span class="close">&times;</span>
+            <!-- Login form -->
+            <form class="loginmodal" method="post" action="/login">
+              <label>
+                <input type="text" id="userName" name="userName" required />
+                <div class="label-text">Username</div>
+              </label>
+              <label>
+                  <input type="password" id="password" name="password" required />
+                  <div class="label-text">Password</div>
+              </label>
+              <button id="loginSubmit">Submit</button>
+
+              <!-- Other Login buttons -->
+              <!-- <hr>
+              <p>Login with:</p>
+                  <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+                  <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
+                  <a href="/auth/facebook" class="btn btn-primary" id="facebook"><span class="fa fa-facebook"></span> Facebook</a> -->
+
+              <!-- Login Error Message -->
+                  <!-- <hr>
+                  <br>
+                  <br> -->
+                  <!-- <span id="errorMessage" style="color:red;font-weight: bolder;"> <%= error %> </span> -->
+
+            </form>
+            <form action="../main.html"></form>
+          </div>
+        </div>
+
+        <!-- The Sign-up Modal -->
+        <div id="myModal2" class="modal">
+          <div class="modal-content" id="signup">
+            <span class="close2">&times;</span>
+            <!-- Login form -->
+            <form class="loginmodal" method="post" action="/signup">
+              <label>
+                <input type="text" id="email" name="email" required />
+                <div class="label-text">Email</div>
+              </label>
+              <label>
+                <input type="text" id="userName" name="userName"  required />
+                <div class="label-text">Username</div>
+              </label>
+              <label>
+                  <input type="text" id="password" name="password" required />
+                  <div class="label-text">Password</div>
+              </label>
+              <button id="signupSubmit">Submit</button>
+
+              <!-- Other Login buttons -->
+              <!-- <hr>
+              <p>Login with:</p>
+                  <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+                  <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
+                  <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a> -->
+
+              <!-- Signup Error Message -->
+                  <!-- <hr>
+                  <br>
+                  <br> -->
+                  <!-- <span id="errorMessage2" style="color:red;font-weight: bolder;"> <%= error %> </span> -->
+
+            </form>
+            <form action="dashboard.html"></form>
+          </div>
+        </div>
+    </div>
+
+    <div style="color:#777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+      <h3 style="text-align:center;">Product Features</h3>
+      <div class="grid-container">
+        <div id="item1">
+          <!--feature 1 -->
+          <i class="far fa-money-bill-alt" style="color:#bbb;"></i>
+          <h3>Feature 1</h3>
+        </div>
+        <div id="item2">
+          <!-- feature 2 -->
+          <i class="far fa-money-bill-alt" style="color:#ccc;"></i>
+          <h3>Feature 2</h3>
+        </div>
+        <div id="item3">
+          <!-- feature 3 -->
+          <i class="far fa-money-bill-alt" style="color:#ddd;"></i>
+          <h3>Feature 3</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="bgimg-2">
+      <div class="caption">
+        <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">TBD - Product Image placeholder</span>
+      </div>
+    </div>
+
+    <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+      <h3 style="text-align:center;">About</h3>
+      <p>Parallax scrolling is a web site trend where the background content is moved at a different speed than the foreground content while scrolling. Nascetur per nec posuere turpis, lectus nec libero turpis nunc at, sed posuere mollis ullamcorper libero ante lectus, blandit pellentesque a, magna turpis est sapien duis blandit dignissim. Viverra interdum mi magna mi, morbi sociis. Condimentum dui ipsum consequat morbi, curabitur aliquam pede, nullam vitae eu placerat eget et vehicula. Varius quisque non molestie dolor, nunc nisl dapibus vestibulum at, sodales tincidunt mauris ullamcorper, dapibus pulvinar, in in neque risus odio. Accumsan fringilla vulputate at quibusdam sociis eleifend, aenean maecenas vulputate, non id vehicula lorem mattis, ratione interdum sociis ornare. Suscipit proin magna cras vel, non sit platea sit, maecenas ante augue etiam maecenas, porta porttitor placerat leo.</p>
+    </div>
+
+    <div class="bgimg-2">
+      <div class="caption">
+        <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">Image of company/money</span>
+      </div>
+    </div>
+
+    <div style="position:relative;">
+      <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+        <form class="contact" action="index.html" method="post">
+          <input type="text" name="Joe Schmo">
+          <label for="">Name</label>
+          <input type="email" name="Joe Schmo">
+          <label for="">Email</label>
+          <textarea name="message" rows="24" cols="80"></textarea>
+          <label for="">Comment</label>
+          <button type="button" name="button" class="btn waves-effect waves-light blue darken-2 submit-btn">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="bgimg-3">
+      <div class="caption">
+        <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">SCROLL UP</span>
+      </div>
+    </div>
+
+    <div style="position:relative;">
+      <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+        <footer>
+          &copy 2018 MOUMEN
+        </footer>
+      </div>
+    </div>
+
+    <!-- <div class="bgimg-1">
+      <div class="caption">
+        <span class="border">COOL!</span>
+      </div>
+    </div> -->
+
+    <script>
+      //=================================================================
+      //Modal setup
+      //=================================================================
+      // Get the modal
+      // document.onready() {
+        var modal = document.getElementById('myModal');
+        var modal2 = document.getElementById('myModal2');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("loginbtn");
+        var btn2 = document.getElementById("signupbtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        var span2 = document.getElementsByClassName("close2")[0];
+
+        // if ($('#errorMessage')) {
+        //   modal.style.display = "block";
+        // }
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        btn2.onclick = function() {
+            modal2.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        span2.onclick = function() {
+          modal2.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            } else if (event.target == modal2) {
+              modal2.style.display = "none";
+            }
+        }
+      // }
+
+    </script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+  </body>
+</html>
