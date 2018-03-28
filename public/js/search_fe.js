@@ -1,7 +1,7 @@
 $(document).ready(function(){
   let priceClose;
   // $(document).on("submit", "#search-form", postData);
-  $(document).on("submit", "#search-form", search);
+  $(document).on("submit", "#search-form", quickSearch);
 
   function postData(event) {
     event.preventDefault();
@@ -24,7 +24,7 @@ $(document).ready(function(){
 
   }
 
-  function search(event) {
+  function quickSearch(event) {
     event.preventDefault();
     const data = $("#ticker").val().trim();
     console.log(data);
