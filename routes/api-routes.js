@@ -1,7 +1,7 @@
 //user vote api routes
-var db = require("../models");
-var yahooFinance = require('yahoo-finance');
-//var Analysis = require("../models").Analysis;
+const db = require("../models");
+const yahooFinance = require('yahoo-finance');
+const Analysis = require("../models").Analysis;
 
 let ticker = "";
 
@@ -22,21 +22,19 @@ module.exports = function(app) {
       symbol: ticker,
       modules: ['price', 'summaryDetail', "defaultKeyStatistics"]       // optional; default modules.
     }, function(err, quote) {
-      console.log(quote);
-      console.log(`Price = ${quote}`);
+      //console.log(quote);
+      //console.log(`Price = ${quote}`);
       console.log(`forwardPE = ${quote.defaultKeyStatistics.forwardPE}`);
 
-      priceClose = quote.price.regularMarketPrice;
-      forwardPE = quote.defaultKeyStatistics.forwardPE;
 
-        // {
-        //   price: {
-        //     // output from price module (see below)
-        //   },
-        //   summaryDetail: {
-        //     // output from summaryDetail module (see below)
-        //   }
-        // }
+      Analysis.create({
+        ticker: quote.price.symbol,
+        forwardPE: quote.price.regularMarketPrice,
+        price: quote.defaultKeyStatistics.forwardPE
+      }).then(function(data) {
+        console.log("data sent back to database");
+        res.json(data);
+      });
 
     });
   });
@@ -57,25 +55,7 @@ module.exports = function(app) {
       }
     });
   });
-  //
-  // app.post("/api/ticker", function(req, res) {
-  //   // console.log("---------------------");
-  //   // console.log(req.body.articleURL);
-  //   // console.log("---------------------");
-  //   // console.log(db);
-  //   Votes.create({
-  //     userName: "Bob",
-  //     faux: req.body.faux,
-  //     real: req.body.real,
-  //     source: req.body.source,
-  //     articleURL: req.body.articleURL,
-  //     articleTitle: req.body.articleTitle
-  //   }).then(function(votes) {
-  //     //console.log("user vote is set");
-  //     res.json(votes); //for individual vote
-  //   });
-  // });
-  //
+
   // app.put("/api/vote", function(req, res) {
   //   //to update the vote if need be
   //   db.Votes.update({
