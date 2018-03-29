@@ -34,12 +34,6 @@ class Stocks extends Component {
   // componentDidMount() { //componentWillMount() another component option
   //   this.getBook();
   // }
-  //
-  // getBook = () => {
-  //   API.getBooks()
-  //     .then(res => this.setState({ books: res.data }))
-  //     .catch(err => console.log(err));
-  // }
 
   handleFormInput(event) {
     const name = event.target.name;
@@ -52,6 +46,7 @@ class Stocks extends Component {
 
   postFavorite(event) {
     event.preventDefault();
+    console.log("post route hit in quicksearch");
     API.postFavorite(this.state.companyName)
     .then(res => {
       console.log('quicksearch data', res);
@@ -98,7 +93,6 @@ class Stocks extends Component {
       }
     })
     .catch(err => console.log(err));
-
   };
 
 
