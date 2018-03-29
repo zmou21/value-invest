@@ -1,20 +1,35 @@
 /* dashboard styling */
 
+body {
+  background-color: #eee;
+}
+
 /*=============================================================*/
      /*================== Grid Container ================== */
 /*=============================================================*/
 
 .grid-container {
   display: grid;
-  grid: auto / 19.5% 79.5%;
+  grid: auto / 80%;
   grid-gap: 1%;
   background-color: #ddd;
   padding: 10px;
-  height:
 }
 .grid-container>div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   padding:20px 0;
   font-size: 30px;
+  position: relative;
+  left: 10%;
 }
+/*
+#logo {
+  float: left;
+  display: inline;
+} */
+
+/* .company-name {
+  float: right;
+  display: inline;
+} */
