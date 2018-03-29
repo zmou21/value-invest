@@ -34,7 +34,7 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 var routes= require("./routes/html-routes.js");
-// require("./routes/api-routes.js")(app);
+var routes= require("./routes/api-routes.js");
 //require('./routes/passport.js')(passport);
 
 app.use(routes);
