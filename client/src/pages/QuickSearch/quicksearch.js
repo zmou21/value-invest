@@ -10,6 +10,7 @@ class Stocks extends Component {
     this.handleFormInput = this.handleFormInput.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.postFavorite = this.postFavorite.bind(this);
+    this.searchToggle = this.searchToggle.bind(this);
 
     this.state = {
       ticker: "",
@@ -25,7 +26,9 @@ class Stocks extends Component {
       yearLow: "",
       sector: "",
       exchange: "",
-      logo: ""
+      logo: "",
+      isHidden: true,
+      activeInputClass: ""
     };
   }
 
@@ -34,6 +37,17 @@ class Stocks extends Component {
   // componentDidMount() { //componentWillMount() another component option
   //   this.getBook();
   // }
+
+  //toggles the search icon to show and hide the search field
+  searchToggle(event) {
+    console.log("event clicked");
+
+    this.setState({
+      isHidden: !this.state.isHidden,
+      activeInputClass: "active"
+    })
+
+  }
 
   handleFormInput(event) {
     const name = event.target.name;
@@ -96,49 +110,56 @@ class Stocks extends Component {
   };
 
 
-
+//className="grid-container"
   render() {
     return (
-      <div className="grid-container">
+      <div>
         <div>
-          {!this.state.price ? ( //ternary operator that displays only if stock is searched
-            <div>
-              <div>
-                <Input
-                  name="ticker"
-                  placeholder="Search Here"
-                  value={this.state.ticker}
-                  onChange={this.handleFormInput}
-                />
-                <FormBtn
-                  onClick={this.handleFormSubmit}
-                >Search Stock
-                </FormBtn>
+          {this.state.isHidden ? (
+              <div className="search-button">
+                <i className="fas fa-search" onClick={this.searchToggle}></i>
               </div>
-            </div>
-          ) : (
-            <div>
-              <Stockname
-                companyName={this.state.companyName}
-                companyLogo={this.state.logo}
-                postFavorite={this.postFavorite}
-              />
-              <Quotes
-                price={this.state.price}
-                standardPE={this.state.standardPE}
-                high={this.state.dayHigh}
-                low={this.state.dayLow}
-                change={this.state.priceChange}
-                marketCap={this.state.marketCap}
-                volume={this.state.volume}
-                yearHigh={this.state.yearHigh}
-                yearLow={this.state.yearLow}
-                sector={this.state.sector}
-                exchange={this.state.exchange}
-              />
-            </div>
-          )}
-        </div>
+              ) : (
+              <div>
+                {!this.state.price ? ( //ternary operator that displays only if stock is searched
+                    <div>
+                      <Input
+                        name="ticker"
+                        placeholder="Search Here"
+                        value={this.state.ticker}
+                        onChange={this.handleFormInput}
+                        className={this.activeClass}
+                      />
+                      <FormBtn
+                        onClick={this.handleFormSubmit}
+                      >Search Stock
+                      </FormBtn>
+                    </div>
+                ) : (
+                  <div>
+                    <Stockname
+                      companyName={this.state.companyName}
+                      companyLogo={this.state.logo}
+                      postFavorite={this.postFavorite}
+                    />
+                    <Quotes
+                      price={this.state.price}
+                      standardPE={this.state.standardPE}
+                      high={this.state.dayHigh}
+                      low={this.state.dayLow}
+                      change={this.state.priceChange}
+                      marketCap={this.state.marketCap}
+                      volume={this.state.volume}
+                      yearHigh={this.state.yearHigh}
+                      yearLow={this.state.yearLow}
+                      sector={this.state.sector}
+                      exchange={this.state.exchange}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
       </div>
     );
   }
