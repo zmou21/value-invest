@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Analysis = sequelize.define("analysis", {
+  var Analysis = sequelize.define("analyses", {
     ticker: {
       type: DataTypes.STRING,
       validate: {
