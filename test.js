@@ -87,3 +87,52 @@
     // add RSI capability
 
   //Graphs that offer historic valuation for P/E and other metrics
+
+
+// unused code
+  // app.post("/api/ticker", function(req, res) {
+  //   //show all articles voted on
+  //   // console.log("---------------------");
+  //   // console.log(req.body.stock);
+  //   // console.log("---------------------");
+  //
+  //   ticker = req.body.stock;
+  //   ticker = ticker.toUpperCase();
+  //   console.log(ticker);
+  //   yahooFinance.quote({
+  //     symbol: ticker,
+  //     modules: ['price', 'summaryDetail', "defaultKeyStatistics"]       // optional; default modules.
+  //   }, function(err, quote) {
+  //     //console.log(quote);
+  //     //console.log(`Price = ${quote}`);
+  //     console.log(`forwardPE = ${quote.defaultKeyStatistics.forwardPE}`);
+  //
+  //
+  //     Analysis.create({
+  //       ticker: quote.price.symbol,
+  //       forwardPE: quote.price.regularMarketPrice,
+  //       price: quote.defaultKeyStatistics.forwardPE
+  //     }).then(function(data) {
+  //       console.log("data sent back to database");
+  //       res.json(data);
+  //     });
+  //
+  //   });
+  // });
+  //
+  // app.get("/api/:ticker", function(req, res) {
+  //   //show stocks searched by user
+  //   ticker = req.params.ticker;
+  //   ticker = ticker.toUpperCase();
+  //
+  //   yahooFinance.quote({
+  //     symbol: ticker,
+  //     modules: ['price', 'summaryDetail', "defaultKeyStatistics"]       // optional; default modules.
+  //   }, function(err, quote) {
+  //     if(err) {
+  //       console.log(err);
+  //     } else {
+  //       res.json(quote);
+  //     }
+  //   });
+  // });
