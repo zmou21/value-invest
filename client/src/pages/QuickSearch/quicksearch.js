@@ -101,7 +101,7 @@ class Stocks extends Component {
     return (
       <div className="grid-container">
         <div>
-          {!this.state.price ? (
+          {!this.state.price ? ( //ternary operator that displays only if stock is searched
             <div>
               <div>
                 <Input
