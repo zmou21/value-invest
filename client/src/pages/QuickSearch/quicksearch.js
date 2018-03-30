@@ -27,8 +27,7 @@ class Stocks extends Component {
       sector: "",
       exchange: "",
       logo: "",
-      isHidden: true,
-      activeInputClass: ""
+      isHidden: true
     };
   }
 
@@ -43,8 +42,7 @@ class Stocks extends Component {
     console.log("event clicked");
 
     this.setState({
-      isHidden: !this.state.isHidden,
-      activeInputClass: "active"
+      isHidden: !this.state.isHidden
     })
 
   }
@@ -117,18 +115,19 @@ class Stocks extends Component {
         <div>
           {this.state.isHidden ? (
               <div className="search-button">
-                <i className="fas fa-search" onClick={this.searchToggle}></i>
+                <h3 className="quicksearch-name">Quick Search</h3>
+                <i className="search-toggle fas fa-search" onClick={this.searchToggle}></i>
               </div>
               ) : (
               <div>
                 {!this.state.price ? ( //ternary operator that displays only if stock is searched
                     <div>
+                      <h3 className="quicksearch-name">Quick Search</h3>
                       <Input
                         name="ticker"
                         placeholder="Search Here"
                         value={this.state.ticker}
                         onChange={this.handleFormInput}
-                        className={this.activeClass}
                       />
                       <FormBtn
                         onClick={this.handleFormSubmit}
@@ -142,6 +141,7 @@ class Stocks extends Component {
                       companyLogo={this.state.logo}
                       postFavorite={this.postFavorite}
                     />
+                  <hr/>
                     <Quotes
                       price={this.state.price}
                       standardPE={this.state.standardPE}

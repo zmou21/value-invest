@@ -5,7 +5,8 @@ export const FormBtn = props => (
   //   {props.children} onClick="searchToggle(this, event);"
   // </button>
 
-  <button {...props} className="search-icon">
+<i {...props} className="search-icon fas fa-search">
     {props.children}<span></span>
-  </button>
+</i>
+
 );

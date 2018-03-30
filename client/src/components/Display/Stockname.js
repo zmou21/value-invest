@@ -1,9 +1,10 @@
-import React from "react";
+  import React from "react";
 
-export const Stockname = props => (
-  <div>
-    <h1 className="company-name">{props.companyName}</h1>
-    <img id="logo" src={props.companyLogo} width="100px" height="100px" alt="logo"/>
-    <button onClick={props.postFavorite}>Favorite Ticker</button>
-  </div>
-);
+  export const Stockname = props => (
+    <div className="stock-name">
+      <img id="logo" src={props.companyLogo} width="75px" height="75px" alt="logo"/>
+      <h1 className="company-name">{props.companyName}
+        <i onClick={props.postFavorite} className="favorite far fa-heart"></i>
+      </h1>
+    </div>
+  );

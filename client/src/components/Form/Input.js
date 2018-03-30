@@ -6,11 +6,11 @@ export const Input = props => (
   //   Enter Ticker:
   //   <input id="ticker" type="text" {...props}/>
   // </form>
-
-  <form id="search-wrapper">
+  // Hover Here to Search
+  <form id="search-wrapper" className="active">
     <div className="input-holder">
         <input type="text" className="search-input" placeholder="Type to search" {...props}/>
-    </div>
+      </div>
     <span className="close" {...props}></span>
   </form>
 

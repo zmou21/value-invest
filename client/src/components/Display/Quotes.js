@@ -2,6 +2,7 @@ import React from "react";
 
 export const Quotes = props => (
   <div className="quote-list">
+    <h2>Quick Summary</h2>
     <ul className="left-list">
       <li>Latest Price: {props.price}</li>
       <li>Day-High: {props.high}</li>

@@ -1,8 +1,8 @@
 import React from "react";
 
 const Dashboard = props => (
-  <div>
-    <h1>{props.ticker}</h1>
+  <div className="navbar">
+    <h1 style={{color:"white"}}>ValuInvest</h1>
   </div>
 );
 
