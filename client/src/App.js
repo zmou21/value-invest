@@ -13,7 +13,7 @@ const App = () => (
   //     </Switch>
   //   </div>
   // </Router>
-  <div>
+  <div className="grid-container">
     <Div />
     <QuickSearch />
   </div>
