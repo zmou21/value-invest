@@ -26,6 +26,18 @@ export default {
       .catch(err => console.log(err))
     );
   },
+  //get route to grab company info from the API
+  getCompanyInfo: function(ticker) {
+    return (
+    axios
+      .get("https://api.iextrading.com/1.0/stock/" + ticker + "/company")
+      .then(function(response) {
+          //console.log(response.data.quote.companyName);
+          return response;
+      })
+      .catch(err => console.log(err))
+    );
+  },
   //post route that allows a user to favorite a stock
   postFavorite: function(ticker) {
     return (
