@@ -1,7 +1,17 @@
 /* dashboard styling */
 
 body {
-   background: #212129;
+   background: linear-gradient(to bottom, #003366 6%, #cc3300 116%);
+}
+
+/*=============================================================*/
+     /*================== Temporary Navbar ================== */
+     /* background: linear-gradient(to top, #333399 0%, #00ffff 100%); */
+/*=============================================================*/
+
+
+.navbar {
+  background-color: lightgrey;
 }
 
 
@@ -11,19 +21,24 @@ body {
 
 .grid-container {
   display: grid;
-  grid: auto / 80%;
-  grid-gap: 1%;
-  background-color: #ddd;
-  padding: 10px;
+  grid: 800px / 19.7% 80.2%;
+  grid-gap: 0.10%;
+  background-color: white;
+  /* padding: 10px; */
 }
 .grid-container>div {
-  background-color: rgba(255, 255, 255, 0.8);
+  background: linear-gradient(to bottom, #003366 6%, #cc3300 116%);
   text-align: center;
   padding:20px 0;
   font-size: 30px;
   position: relative;
-  left: 10%;
+  /* left: 10%; */
 }
+
+/*=============================================================*/
+/*================== Search and Input Fields Styling ================== */
+/*=============================================================*/
+
 
 ::selection {
    background: #212129;
@@ -36,28 +51,47 @@ body {
     left:50%;
 }
 
-.search-button {
+.search-icon {
   position: absolute;
   transform: translate(-50%, -50%);
   top:50%;
-  left:50%;
-  background-color: grey;
+  left:58%;
+  /* background-color: grey;
   width: 125px;
   height: 100px;
-  border-radius: 5px;
+  border-radius: 5px; */
 }
 
-.fas{
+.quicksearch-name {
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 3em;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top:30%;
+  left:50%;
+}
+
+.search-toggle{
   color:white;
   font-size: 4em;
-  position: relative;
-  left: 30%;
-  top: 25%;
+  position: absolute;
+  /* transform: translate(-50%, -50%); */
+  top:50%;
+  left:50%;
+  cursor: pointer;
 }
 
-.fas:hover{
+.search-toggle:hover{
   transform: scale(1.25);
 }
+
+.search-icon:hover {
+  color: white;
+  cursor: pointer;
+  /* transform: scale(1.25); */
+}
+
 
 #search-wrapper.active {}
 
@@ -70,7 +104,7 @@ body {
     position: relative;
     transition: all 0.3s ease-in-out;
 }
-
+/* hover here over input holder to search with hover */
 #search-wrapper.active .input-holder {
     width:450px;
     border-radius: 50px;
@@ -89,7 +123,7 @@ body {
     box-sizing: border-box;
     border:none;
     outline:none;
-    font-family:"Open Sans", Arial, Verdana;
+    font-family: 'Josefin Sans', sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
@@ -154,7 +188,7 @@ body {
     border-radius: 16px;
     border: 4px solid #FE5F55;
 }
-#search-wrapper .close {
+/* #search-wrapper .close {
     position: absolute;
     z-index: 1;
     top:24px;
@@ -165,6 +199,7 @@ body {
     transform: rotate(-180deg);
     transition: all .3s cubic-bezier(0.285, -0.450, 0.935, 0.110);
     transition-delay: 0.2s;
+    color: blue;
 }
 #search-wrapper.active .close {
     right:-50px;
@@ -189,4 +224,62 @@ body {
     height: 5px;
     left: 0px;
     top: 10px;
+} */
+
+/*=============================================================*/
+ /*================== Result Display Styling ================== */
+/*=============================================================*/
+
+/* styling for name and logo */
+
+.stock-name {
+  position: relative;
 }
+
+.company-name {
+  color: white;
+  width: 500px;
+  text-decoration: underline;
+  font-family: 'Josefin Sans', sans-serif;
+  display: inline-block;
+  position: absolute;
+  top: 5%;
+  left: 41%;
+}
+
+#logo {
+  border-radius: 15px;
+  top: 10%;
+  /* display: inline-block; */
+  position: relative;
+  top: 5%;
+  left: 35%;
+}
+
+/* favorite button/icon */
+
+.favorite {
+  color: white;
+  font-size: 0.7em;
+  cursor:pointer;
+  margin-left: 6%;
+}
+
+.favorite:hover {
+  color: red;
+  transform: scale(1.15);
+}
+
+/* styling for quick stock information */
+
+.left-list {
+  list-style-type: none;
+}
+
+.middle-list {
+  list-style-type: none;
+}
+
+
+
+/* styling for company info */
