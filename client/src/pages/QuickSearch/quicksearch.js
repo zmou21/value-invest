@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Input, FormBtn } from "../../components/Form";
-import { Stockname, Quotes, Companyinfo } from "../../components/Display";
+import { Stockname, Quotes, Companyinfo, Companynews } from "../../components/Display";
 import Chart from "../../components/Charts";
 import API from "../../utils/API";
 
@@ -13,6 +13,8 @@ class Stocks extends Component {
     this.postFavorite = this.postFavorite.bind(this);
     this.searchToggle = this.searchToggle.bind(this);
     this.getChartData = this.getChartData.bind(this);
+    this.getCompanyNews = this.getCompanyNews.bind(this);
+
 
     this.state = {
       ticker: "",
@@ -33,7 +35,8 @@ class Stocks extends Component {
       description: "",
       logo: "",
       isHidden: true,
-      chartData: {}
+      chartData: {},
+      companyNews: []
     };
   }
 
@@ -82,7 +85,7 @@ class Stocks extends Component {
     API.getStocksIEX(this.state.ticker)
     .then(res => {
       console.log("---------------");
-      console.log(res.data.chart);
+      console.log(res.data);
       console.log("---------------");
 
       if(this.state.ticker) {
@@ -129,8 +132,10 @@ class Stocks extends Component {
     .catch(err => console.log(err));
 
     this.getChartData();
+    this.getCompanyNews();
   };
 
+  //grabs chart data and displays it on the site
   getChartData(){
     let label = [];
     let dataClose = [];
@@ -171,6 +176,38 @@ class Stocks extends Component {
       };
     });
   };
+
+  //function to grab company news and render it on the page
+  getCompanyNews(){
+    let news = [];
+
+    API.getStocksIEX(this.state.ticker)
+    .then(res => {
+
+      for (let i = 0; i < res.data.news.length; i++) {
+        //console.log(res.data.news[i]);
+        news.push(res.data.news[i]);
+      }
+
+      if(this.state.ticker) {
+        this.setState ({
+          companyNews: news
+        })
+      }
+
+    });
+  }
+
+  getTickers() {
+    //   API.getTickers()
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //
+    //   this.getChartData();
+    //   this.getCompanyNews();
+    // };
+  }
 
 //className="grid-container"
   render() {
@@ -227,6 +264,9 @@ class Stocks extends Component {
                       exchange={this.state.exchange}
                       description={this.state.description}
                       industry={this.state.industry}
+                    />
+                    <Companynews
+                      companyNews={this.state.companyNews}
                     />
                   </div>
                 )}
