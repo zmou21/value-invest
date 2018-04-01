@@ -53,19 +53,45 @@ class Value extends Component {
   }
 
   freeCashFlow() {
-    //console.log(this.state.earningsGrowth);
     let year = 10;
-    const growthDecline = 0.05;
-    const discountrate = 0.15;
-    const npvFCF = [];
-    const currentFcf = (1 + this.state.earningsGrowth) * (this.state.freeCashFlow);
-    console.log(currentFcf);
+    let growthDecline = (1 - 0.05);
+    const discountRate = 0.15;
 
-    for(let i = 1; i < year; i++) {
-      let test = ((1 + this.state.earningsGrowth) * ((1 - growthDecline) ^ i));
-      //let nextFcf = (currentFcf) / ((1 + this.state.earningsGrowth) * (1 - growthDecline)^(i));
-      //console.log((1 * i));
-      console.log(test);
+    if(this.state.earningsGrowth < 0 || !this.state.earningsGrowth) {
+      console.log("Negative growth rate, can't do the math OR growth rate doesn't exist");
+    }
+    else {
+
+      if(this.state.earningsGrowth > 1 ) {
+        let newEarningsRate = this.state.earningsGrowth / 100;
+        const npvFCF = [this.state.freeCashFlow];
+        let currentFcf = (1 + newEarningsRate) * (this.state.freeCashFlow);
+        npvFCF.push(currentFcf);
+
+        for(let i = 1; i < year; i++) {
+          const fcf = npvFCF[i];
+          const decline = (growthDecline ** (i - 1));
+          let growthRate = 1 + (newEarningsRate * decline);
+          const nextFcf = fcf * (growthRate)
+          npvFCF.push(nextFcf);
+
+        }
+        console.log(npvFCF);
+      }
+      else {
+        const npvFCF = [this.state.freeCashFlow];
+        let currentFcf = (1 + this.state.earningsGrowth) * (this.state.freeCashFlow);
+        npvFCF.push(currentFcf);
+        for(let i = 1; i < year; i++) {
+          const fcf = npvFCF[i];
+          const decline = (growthDecline ** (i - 1));
+          let growthRate = 1 + (this.state.earningsGrowth * decline);
+          const nextFcf = fcf * (growthRate)
+          npvFCF.push(nextFcf);
+        }
+        console.log(npvFCF);
+      }
+
     }
 
   }
