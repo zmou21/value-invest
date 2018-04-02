@@ -1,8 +1,8 @@
 /* dashboard styling */
 
-body {
+/* body {
    background: linear-gradient(to bottom, #003366 6%, #cc3300 116%);
-}
+} */
 
 /*=============================================================*/
      /*================== Temporary Navbar ================== */
@@ -63,7 +63,7 @@ body {
 }
 
 .quicksearch-name {
-  color: white;
+  color: grey;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 3em;
   position: absolute;
@@ -73,7 +73,7 @@ body {
 }
 
 .search-toggle{
-  color:white;
+  color:grey;
   font-size: 4em;
   position: absolute;
   /* transform: translate(-50%, -50%); */
@@ -87,7 +87,7 @@ body {
 }
 
 .search-icon:hover {
-  color: white;
+  color: lightblue;
   cursor: pointer;
   /* transform: scale(1.25); */
 }
@@ -127,7 +127,7 @@ body {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
-    color:#FFF;
+    color:#eee;
     transform: translate(0, 60px);
     transition: all .3s cubic-bezier(0.000, 0.105, 0.035, 1.570);
     transition-delay: 0.3s;
@@ -141,7 +141,7 @@ body {
     height:70px;
     border:none;
     border-radius:6px;
-    background: #FFF;
+    background: #eee;
     padding:0px;
     outline:none;
     position: relative;
@@ -243,7 +243,7 @@ body {
 }
 
 .company-name {
-  color: white;
+  color: grey;
   max-width: inherit;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1em;
@@ -260,7 +260,7 @@ body {
 /* favorite button/icon */
 
 .favorite {
-  color: white;
+  color: grey;
   font-size: 0.7em;
   cursor:pointer;
   margin-left: 1%;
