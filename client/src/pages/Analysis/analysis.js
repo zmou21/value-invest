@@ -8,16 +8,17 @@ class Value extends Component {
   constructor() {
     super();
 
-    this.freeCashFlow = this.freeCashFlow.bind(this);
+    this.dcfIntrinsicValue = this.dcfIntrinsicValue.bind(this);
     this.handleFormInput = this.handleFormInput.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.postFavorite = this.postFavorite.bind(this);
     this.searchToggle = this.searchToggle.bind(this);
     this.advancedYahooData = this.advancedYahooData.bind(this);
-
+    this.stockRecommendation = this.stockRecommendation.bind(this);
 
     this.state = {
       isHidden: true,
+      price: "",
       ticker: "",
       companyName: "",
       currentRatio: "",
@@ -49,14 +50,25 @@ class Value extends Component {
       dividendYield: "",
       dividendRate: "",
       trailingPS: "",
-      next5YearGrowth: ""
+      next5YearGrowth: "",
+      totalNPVfcf: 0,
+      year10FcfValue: "",
+      companyValue: "",
+      instrinicValueDCF: ""
     }
   }
 
-  freeCashFlow() {
-    let year = 10;
-    let growthDecline = (1 - 0.05);
+  //*********************************************
+  //NPV freecashflow calculation
+  //*********************************************
+  dcfIntrinsicValue() {
+    const year = 10;
+    const growthDecline = (1 - 0.05);
+    const valuationLastFCF = 12;
     const discountRate = 0.15;
+    const marginSafety = 0.30;
+    const FcfGrowth = [this.state.freeCashFlow];
+    const npvFcfArray = [];
 
     if(this.state.next5YearGrowth < 0 || !this.state.next5YearGrowth) {
       console.log("Negative growth rate, can't do the math OR growth rate doesn't exist");
@@ -65,36 +77,80 @@ class Value extends Component {
 
       if(this.state.next5YearGrowth > 1 ) {
         let newEarningsRate = this.state.next5YearGrowth / 100;
-        const npvFCF = [this.state.freeCashFlow];
+        newEarningsRate = newEarningsRate * (1 - marginSafety);
         let currentFcf = (1 + newEarningsRate) * (this.state.freeCashFlow);
-        npvFCF.push(currentFcf);
+        FcfGrowth.push(currentFcf);
 
         for(let i = 1; i < year; i++) {
-          const fcf = npvFCF[i];
+          const fcf = FcfGrowth[i];
           const decline = (growthDecline ** (i - 1));
           let growthRate = 1 + (newEarningsRate * decline);
           const nextFcf = fcf * (growthRate)
-          npvFCF.push(nextFcf);
+          FcfGrowth.push(nextFcf);
 
         }
-        console.log(npvFCF);
+        //console.log(FcfGrowth);
       }
       else {
-        const npvFCF = [this.state.freeCashFlow];
+        this.setState({
+          next5YearGrowth: this.state.next5YearGrowth * (1 - marginSafety)
+        })
         let currentFcf = (1 + this.state.next5YearGrowth) * (this.state.freeCashFlow);
-        npvFCF.push(currentFcf);
+        FcfGrowth.push(currentFcf);
         for(let i = 1; i < year; i++) {
-          const fcf = npvFCF[i];
+          const fcf = FcfGrowth[i];
           const decline = (growthDecline ** (i - 1));
           let growthRate = 1 + (this.state.next5YearGrowth * decline);
           const nextFcf = fcf * (growthRate)
-          npvFCF.push(nextFcf);
+          FcfGrowth.push(nextFcf);
         }
-        console.log(npvFCF);
+        //console.log(FcfGrowth);
       }
+    }
+
+    for(let i = 1; i < FcfGrowth.length; i++) {
+      let npvFcf = (FcfGrowth[i]) / ((1 + discountRate) ** i);
+      npvFcfArray.push(npvFcf);
 
     }
 
+    for(let i = 0; i < npvFcfArray.length; i++) {
+      // this.setState({
+        this.state.totalNPVfcf += npvFcfArray[i]
+      // })
+    }
+
+    // this.setState({
+    //
+    // })
+    this.state.year10FcfValue = npvFcfArray[9] * valuationLastFCF;
+
+    this.state.companyValue = (this.state.year10FcfValue + this.state.totalNPVfcf + this.state.totalCash) - this.state.totalDebt;
+    //console.log("companyvalue", this.state.companyValue);
+
+    this.state.instrinicValueDCF = this.state.companyValue / this.state.sharesOutstanding;
+    console.log(`Company Value $${this.state.instrinicValueDCF}`);
+
+    this.stockRecommendation();
+  }
+
+  //*********************************************
+  //compare intrinsic value to current price and output a buy sell or hold recommendation
+  //*********************************************
+
+  stockRecommendation() {
+    if(this.state.price > this.state.instrinicValueDCF) {
+      console.log("Don't buy");
+    }
+    else if(this.state.price === this.state.instrinicValueDCF) {
+      console.log("hold, even priced");
+    }
+    else if (this.state.price < this.state.instrinicValueDCF) {
+      console.log("Buy!!");
+    }
+    else {
+      console.log("error!");
+    }
   }
 
   //*********************************************
@@ -208,7 +264,8 @@ class Value extends Component {
         shortRatio: res.data.defaultKeyStatistics.shortRatio,
         dividendYield: res.data.summaryDetail.dividendYield,
         dividendRate: res.data.summaryDetail.dividendRate,
-        trailingPS: res.data.summaryDetail.priceToSalesTrailing12Months
+        trailingPS: res.data.summaryDetail.priceToSalesTrailing12Months,
+        price: res.data.price.regularMarketPrice
       })
       // .catch(err => console.log(err))
 
@@ -218,7 +275,7 @@ class Value extends Component {
         this.setState({
           next5YearGrowth: res.data
         })
-        this.freeCashFlow();
+        this.dcfIntrinsicValue();
       })
       // .catch(err => console.log(err))
 
