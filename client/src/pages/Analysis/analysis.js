@@ -48,7 +48,8 @@ class Value extends Component {
       shortRatio: "",
       dividendYield: "",
       dividendRate: "",
-      trailingPS: ""
+      trailingPS: "",
+      next5YearGrowth: ""
     }
   }
 
@@ -57,13 +58,13 @@ class Value extends Component {
     let growthDecline = (1 - 0.05);
     const discountRate = 0.15;
 
-    if(this.state.earningsGrowth < 0 || !this.state.earningsGrowth) {
+    if(this.state.next5YearGrowth < 0 || !this.state.next5YearGrowth) {
       console.log("Negative growth rate, can't do the math OR growth rate doesn't exist");
     }
     else {
 
-      if(this.state.earningsGrowth > 1 ) {
-        let newEarningsRate = this.state.earningsGrowth / 100;
+      if(this.state.next5YearGrowth > 1 ) {
+        let newEarningsRate = this.state.next5YearGrowth / 100;
         const npvFCF = [this.state.freeCashFlow];
         let currentFcf = (1 + newEarningsRate) * (this.state.freeCashFlow);
         npvFCF.push(currentFcf);
@@ -80,12 +81,12 @@ class Value extends Component {
       }
       else {
         const npvFCF = [this.state.freeCashFlow];
-        let currentFcf = (1 + this.state.earningsGrowth) * (this.state.freeCashFlow);
+        let currentFcf = (1 + this.state.next5YearGrowth) * (this.state.freeCashFlow);
         npvFCF.push(currentFcf);
         for(let i = 1; i < year; i++) {
           const fcf = npvFCF[i];
           const decline = (growthDecline ** (i - 1));
-          let growthRate = 1 + (this.state.earningsGrowth * decline);
+          let growthRate = 1 + (this.state.next5YearGrowth * decline);
           const nextFcf = fcf * (growthRate)
           npvFCF.push(nextFcf);
         }
@@ -176,8 +177,8 @@ class Value extends Component {
 
     API.getAdvancedData(this.state.ticker)
     .then(res => {
-      console.log("api route is being hit inside function");
-      console.log(res);
+      //console.log("api route is being hit inside function");
+      //console.log(res);
       this.setState({
         currentRatio: res.data.financialData.currentRatio,
         debtToEquity: res.data.financialData.debtToEquity,
@@ -209,8 +210,18 @@ class Value extends Component {
         dividendRate: res.data.summaryDetail.dividendRate,
         trailingPS: res.data.summaryDetail.priceToSalesTrailing12Months
       })
+      // .catch(err => console.log(err))
 
-      this.freeCashFlow();
+      API.getGrowthData(this.state.ticker)
+      .then(res => {
+        //console.log(res);
+        this.setState({
+          next5YearGrowth: res.data
+        })
+        this.freeCashFlow();
+      })
+      // .catch(err => console.log(err))
+
     })
 
   }
