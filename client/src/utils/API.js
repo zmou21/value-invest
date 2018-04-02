@@ -82,5 +82,14 @@ export default {
       })
       .catch(err => console.log(err))
     )
+  },
+  getGrowthData: function(ticker) {
+    return (
+      axios.get("/api/growth", ticker)
+      .then(function(response) {
+        return response;
+      })
+      .catch(err => console.log(err))
+    )
   }
 };
