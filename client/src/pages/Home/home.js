@@ -3,14 +3,11 @@ import { Form, LoginModal, SignupModal } from "../../components/Home";
 import "./style.css";
 import "./login.css";
 
-
 class Home extends Component {
   constructor() {
     super();
 
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-
+  this.toggle = this.toggle.bind(this);
 
     this.state = {
       username: "",
@@ -19,42 +16,21 @@ class Home extends Component {
       name: "",
       email: "",
       comment: "",
-      isHidden: true,
-      block: "none"
+      toggle: false
     }
   }
 
-  openModal() {
+  toggle() {
     console.log("modal is being clicked");
-    this.setState({
-      isHidden: this.state.isHidden,
-      block: "block"
-    })
+    // this.setState({
+    //   toggle: this.state.toggle
+    // })
+    this.setState(prevState => ({
+        toggle: !prevState.toggle
+    }));
   }
 
-  closeModal() {
-    console.log("modal closed");
-    this.setState({
-      isHidden: this.state.isHidden,
-      block: "none"
-    })
-  }
-
-  // blockShowHide() {
-  //   this.setState({
-  //     block: "block"
-  //   })
-  // }
-
-
-
-  //notes to myself:
-  //moved registerservice and app.test js in to other folder
-  //LoginModal, SignupModal,
-  //          <LoginModal />
-            //<SignupModal />
   render() {
-    let block = this.state.isHidden ? "block": "none"
     return (
       <div>
         <div className="bgimg-1">
@@ -66,16 +42,18 @@ class Home extends Component {
             <div className="logo">
                 <img src="#" alt="logo" width="200px" height="75px"/>
             </div>
-              <span id="loginbtn" onClick={() => this.openModal()}><a href="#login" className="linkstyle">login</a>
+              <span id="loginbtn"><a onClick={this.toggle} className="linkstyle">login</a>
                 <LoginModal
-                  style={this.state.block}
+                  toggle={this.state.toggle}
+                  toggleClick={this.toggle}
                 />
               </span>
-            <span id="signupbtn"><a href="#signup" onClick={() => this.openModal()} className="linkstyle">sign-up</a>
+          </div>
+          <div>
+            <span id="signupbtn"><a onClick={this.toggle} className="linkstyle">sign-up</a>
               <SignupModal />
             </span>
           </div>
-
         </div>
 
         <div>

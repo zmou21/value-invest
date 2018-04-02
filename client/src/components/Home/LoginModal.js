@@ -1,28 +1,38 @@
 import React from "react";
 
+const display = {
+  display: 'block'
+};
+const hide = {
+  display: 'none'
+};
+
+
 export const LoginModal = props => (
 
-    <div id="myModal" className="modal" style={{display: props.style}}>
-      <div className="modal-content" id="login">
-        <span className="close" onClick={props.close}>&times;</span>
+  <div id="myModal" className="modal" style={props.toggle ? display : hide}>
+    <div className="modal-content" id="login">
+      <span className="close" onClick={props.toggleClick}>&times;</span>
 
-        <form className="loginmodal" method="post" action="/login">
-          <label>
-            <input type="text" id="userName" name="userName" required />
-            <div className="label-text">Username</div>
-          </label>
-          <label>
-              <input type="password" id="password" name="password" required />
-              <div className="label-text">Password</div>
-          </label>
-          <button id="loginSubmit">Submit</button>
+      <form className="loginmodal" method="post" action="/login">
+        <label>
+          <input type="text" id="userName" name="userName" required />
+          <div className="label-text">Username</div>
+        </label>
+        <label>
+            <input type="password" id="password" name="password" required />
+            <div className="label-text">Password</div>
+        </label>
+        <button id="loginSubmit">Submit</button>
 
-        </form>
-        <form action="../main.html"></form>
-      </div>
+      </form>
+      <form action="../main.html"></form>
     </div>
+  </div>
 
 );
+
+
 
 // <!-- Other Login buttons -->
 // <!-- <hr>
