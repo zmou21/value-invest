@@ -3,6 +3,19 @@ import { Form, LoginModal, SignupModal } from "../../components/Home";
 import "./style.css";
 import "./login.css";
 
+// // Initialize Firebase
+// const config = {
+//   apiKey: "AIzaSyAXAzb7mHYs8gWbK6soEnqrEqgTmdh4S9I",
+//   authDomain: "value-invest.firebaseapp.com",
+//   databaseURL: "https://value-invest.firebaseio.com",
+//   projectId: "value-invest",
+//   storageBucket: "",
+//   messagingSenderId: "1066197650482"
+// };
+// firebase.initializeApp(config);
+//
+// let database = firebase.database();
+
 class Home extends Component {
   constructor() {
     super();
@@ -29,6 +42,107 @@ class Home extends Component {
         toggle: !prevState.toggle
     }));
   }
+
+  // //login function
+  // login(event) {
+  //   event.preventDefault();
+  //     var email = document.getElementById("email-input-login").value;
+  //     var password =  document.getElementById("password-input-login").value;
+  //     var auth = firebase.auth();
+  //
+  //     // if (email.length < 4) {
+  //     // 	alert("Please enter a valid email address");
+  //     // 	return;
+  //     // }
+  //     // else if (password.length < 5) {
+  //     // 	alert("Please enter a valid password");
+  //     // 	return;
+  //     // }
+  //
+  //     var promise = auth.signInWithEmailAndPassword(email, password);
+  //
+  //     promise.catch(error => console.log(error.message));
+  // }
+  //
+  // //signup function
+  // signup(event) {
+  //   event.preventDefault();
+  //     var email = document.getElementById("email-input-signup").value;
+  //     var password =  document.getElementById("password-input-signup").value;
+  //     var name = document.getElementById("name-input-signup").value
+  //
+  //     database.ref().push({
+  //       loginName: name,
+  //       dateAdded: firebase.database.ServerValue.TIMESTAMP
+  //     });
+  //
+  //     var auth = firebase.auth();
+  //
+  //     if (email.length < 0) {
+  //       alert("Please enter a valid email address");
+  //       return;
+  //     }
+  //     else if (password.length < 5) {
+  //       alert("Please enter a valid password");
+  //       return;
+  //     }else if ($("#cancel").on("click", function(event){
+  //         $(".signup-modal-container").toggleClass("hidden")
+  //     }));
+  //
+  //     var promise = auth.createUserWithEmailAndPassword(email, password);
+  //
+  //     promise.catch(error => console.log(error.message));
+  // }
+  //
+  // //logout function (move to dashboard)
+  // logout() {
+  //   firebase.auth().signOut().then(function() {
+  //       swal("You logged out");
+  //       window.location = "index.html";
+  //   }).catch(function(error) {
+  //     console.log(error);
+  //   });
+  //
+  //   const uid = [];
+  //
+  //   firebase.auth().onAuthStateChanged(function(user) {
+  //    window.user = user; // user is undefined if no user signed in
+  //    uid.push(user.uid);
+  //
+  //     database.ref('users/' + uid[0]).on("child_added", function(snapshot) {
+  //       var game = snapshot.val().gameToken;
+  //     });
+  //
+  //     database.ref('users/' + uid[0]).push({
+  //       // hangman: this.wins,
+  //       gameToken: gameToken
+  //     });
+  //   });
+  //   console.log(uid);
+  // }
+
+  // //handleforminput
+  // handleforminput() {
+  //     //handleforminput
+  // }
+  //
+  // //handleformsubmit
+  // handleFormSubmit() {
+  //   //handleformsubmit
+  // }
+  //
+  // firebase() {
+  //   firebase.auth().onAuthStateChanged(firebaseUser => {
+  //
+  //       if (firebaseUser) {
+  //         console.log(firebaseUser);
+  //         window.location = "game.html";
+  //       }
+  //       else {
+  //         console.log("Not logged in");
+  //       }
+  //     });
+  // }
 
   render() {
     return (
