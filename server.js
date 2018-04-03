@@ -21,7 +21,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Static directory
-app.use(express.static("public"));
+app.use(express.static("client/build"));
+
+// public directory
+// app.use(express.static("public"));
 
 // app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}));
 //
@@ -45,9 +48,9 @@ var routes= require("./routes/api-routes.js");
 app.use(routes);
 
 //comment
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.get("*", function(req, res) {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
 
 // Syncing sequelize models and then starting our Express app
 // =============================================================
