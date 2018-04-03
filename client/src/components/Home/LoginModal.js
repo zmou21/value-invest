@@ -14,13 +14,13 @@ export const LoginModal = props => (
     <div className="modal-content" id="login">
       <span className="close" onClick={props.toggleClick}>&times;</span>
 
-      <form className="loginmodal" method="post" action="/login">
+      <form className="loginmodal" method="post" onSubmit={props.handle}>
         <label>
-          <input type="text" id="userName" name="userName" required />
+          <input type="text" id="userName" name="username" placeholder="username" value={props.username} onChange={props.handleLoginInput} required />
           <div className="label-text">Username</div>
         </label>
         <label>
-            <input type="password" id="password" name="password" required />
+            <input type="password" id="password" name="password" placeholder="password" value={props.password} onChange={props.handleLoginInput} required />
             <div className="label-text">Password</div>
         </label>
         <button id="loginSubmit">Submit</button>

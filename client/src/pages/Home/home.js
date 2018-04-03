@@ -2,18 +2,8 @@ import React, { Component } from "react";
 import { Form, LoginModal, SignupModal } from "../../components/Home";
 import "./style.css";
 import "./login.css";
+// import firebase from '../firebase/js';
 
-// // Initialize Firebase
-// const config = {
-//   apiKey: "AIzaSyAXAzb7mHYs8gWbK6soEnqrEqgTmdh4S9I",
-//   authDomain: "value-invest.firebaseapp.com",
-//   databaseURL: "https://value-invest.firebaseio.com",
-//   projectId: "value-invest",
-//   storageBucket: "",
-//   messagingSenderId: "1066197650482"
-// };
-// firebase.initializeApp(config);
-//
 // let database = firebase.database();
 
 class Home extends Component {
@@ -21,6 +11,7 @@ class Home extends Component {
     super();
 
   this.toggle = this.toggle.bind(this);
+  this.handleLoginInput = this.handleLoginInput.bind(this);
 
     this.state = {
       username: "",
@@ -44,26 +35,28 @@ class Home extends Component {
   }
 
   // //login function
-  // login(event) {
-  //   event.preventDefault();
-  //     var email = document.getElementById("email-input-login").value;
-  //     var password =  document.getElementById("password-input-login").value;
-  //     var auth = firebase.auth();
-  //
-  //     // if (email.length < 4) {
-  //     // 	alert("Please enter a valid email address");
-  //     // 	return;
-  //     // }
-  //     // else if (password.length < 5) {
-  //     // 	alert("Please enter a valid password");
-  //     // 	return;
-  //     // }
-  //
-  //     var promise = auth.signInWithEmailAndPassword(email, password);
-  //
-  //     promise.catch(error => console.log(error.message));
-  // }
-  //
+  handleLoginInput(event) {
+      const name = event.target.name;
+      const value =  event.target.value;
+
+      this.setState({
+        [name]: value
+      });
+      // if (email.length < 4) {
+      // 	alert("Please enter a valid email address");
+      // 	return;
+      // }
+      // else if (password.length < 5) {
+      // 	alert("Please enter a valid password");
+      // 	return;
+      // }
+  }
+
+  handleFormSubmit() {
+    //handleformsubmit
+  }
+
+
   // //signup function
   // signup(event) {
   //   event.preventDefault();
@@ -122,15 +115,9 @@ class Home extends Component {
   // }
 
   // //handleforminput
-  // handleforminput() {
-  //     //handleforminput
-  // }
-  //
+
   // //handleformsubmit
-  // handleFormSubmit() {
-  //   //handleformsubmit
-  // }
-  //
+
   // firebase() {
   //   firebase.auth().onAuthStateChanged(firebaseUser => {
   //
@@ -143,6 +130,11 @@ class Home extends Component {
   //       }
   //     });
   // }
+
+        //const auth = firebase.auth();
+        // var promise = auth.signInWithEmailAndPassword(email, password);
+        //
+        // promise.catch(error => console.log(error.message));
 
   render() {
     return (
@@ -160,6 +152,7 @@ class Home extends Component {
                 <LoginModal
                   toggle={this.state.toggle}
                   toggleClick={this.toggle}
+                  handleLoginInput={this.handleLoginInput}
                 />
               </span>
 
