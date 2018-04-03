@@ -49,11 +49,7 @@ class Home extends Component {
                 />
               </span>
           </div>
-          <div>
-            <span id="signupbtn"><a onClick={this.toggle} className="linkstyle">sign-up</a>
-              <SignupModal />
-            </span>
-          </div>
+
         </div>
 
         <div>
