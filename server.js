@@ -38,11 +38,15 @@ if (process.env.NODE_ENV === "production") {
 
 // Routes
 // =============================================================
-var routes= require("./routes/html-routes.js");
+// var routes= require("./routes/html-routes.js");
 var routes= require("./routes/api-routes.js");
 //require('./routes/passport.js')(passport);
 
 app.use(routes);
+
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 // Syncing sequelize models and then starting our Express app
 // =============================================================
