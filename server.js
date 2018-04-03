@@ -31,6 +31,11 @@ app.use(express.static("public"));
 //
 // app.use(flash());
 
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 // Routes
 // =============================================================
 var routes= require("./routes/html-routes.js");
