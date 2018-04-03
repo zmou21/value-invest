@@ -162,12 +162,7 @@ class Home extends Component {
                   toggleClick={this.toggle}
                 />
               </span>
-              <span id="loginbtn"><a onClick={this.toggle} className="linkstyle">login</a>
-                <LoginModal
-                  toggle={this.state.toggle}
-                  toggleClick={this.toggle}
-                />
-              </span>
+
           </div>
 
         </div>
