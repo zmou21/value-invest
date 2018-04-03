@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Static directory
-app.use(express.static("client/build"));
+// app.use(express.static("client/build"));
 
 // public directory
 // app.use(express.static("public"));
@@ -37,6 +37,8 @@ app.use(express.static("client/build"));
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+} else {
+  app.use(express.static("public"));
 }
 
 // Routes
