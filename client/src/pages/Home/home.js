@@ -20,7 +20,6 @@ class Home extends Component {
   this.PostUserCredentials = this.PostUserCredentials.bind(this);
 
     this.state = {
-      username: "",
       password: "",
       image: "",
       name: "",
@@ -108,7 +107,7 @@ class Home extends Component {
     auth.onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
         console.log(firebaseUser);
-        window.location = "https://mysterious-basin-32792.herokuapp.com/search";
+        window.location = "/search";
       }
 
     });

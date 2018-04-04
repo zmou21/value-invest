@@ -82,7 +82,6 @@ let ticker = "";
     console.log("------------------------------------");
     console.log("api-route for new user is being hit", req.body.data.data);
     db.User.create({
-      userName: "placeholder",
       email: req.body.data.email,
       name: req.body.data.name
     }).then(function(data) {
