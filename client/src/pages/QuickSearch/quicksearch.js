@@ -18,7 +18,7 @@ class Stocks extends Component {
     this.getChartData = this.getChartData.bind(this);
     this.getCompanyNews = this.getCompanyNews.bind(this);
     this.logout = this.logout.bind(this);
-    //this.getUsersName = this.getUsersName.bind(this);
+    this.getUsersName = this.getUsersName.bind(this);
 
     this.state = {
       ticker: "",
@@ -54,7 +54,7 @@ class Stocks extends Component {
       if (user) {
         //console.log(user);
         this.setState({ user, email: user.email });
-        // this.getUsersName();
+        this.getUsersName();
       } else {
         window.location = "/";
       }
@@ -231,17 +231,17 @@ class Stocks extends Component {
   //*********************************************
   //get users name to display on the page
   //*********************************************
-  // getUsersName() {
-  //   if(this.state.email) {
-  //     API.getUsersName(this.state.email)
-  //     .then(res => {
-  //       console.log("from database", res);
-  //       this.setState({
-  //         name: res.data.name
-  //       })
-  //     })
-  //   }
-  // }
+  getUsersName() {
+    if(this.state.email) {
+      API.getUsersName(this.state.email)
+      .then(res => {
+        console.log("from database", res);
+        this.setState({
+          name: res.data.username
+        })
+      })
+    }
+  }
 
   getTickers() {
     //   API.getTickers()

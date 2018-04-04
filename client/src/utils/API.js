@@ -104,6 +104,7 @@ export default {
     return (
       axios.get("/api/getuserdata/" + email)
       .then(function(response) {
+        console.log(response);
         return response;
       })
       .catch(err => console.log(err))

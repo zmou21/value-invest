@@ -80,10 +80,10 @@ let ticker = "";
   //reserved
   router.post("/api/newuser", (req, res) => {
     console.log("------------------------------------");
-    console.log("api-route for new user is being hit", req.body.data.data);
+    console.log("api-route for new user is being hit", req.body.data);
     db.User.create({
       email: req.body.data.email,
-      name: req.body.data.name
+      username: req.body.data.username
     }).then(function(data) {
         //console.log(data);
     })
@@ -91,15 +91,15 @@ let ticker = "";
   });
 
   router.get("/api/getuserdata/:email", (req, res) => {
-    console.log("------------------------------------");
-    console.log("api-route for to get users name is being hit", req.params.email);
+    //console.log("------------------------------------");
+    //console.log("api-route for to get users name is being hit", req.params);
     //console.log("api-route for to get users name is being hit", req);
     db.User.findOne({
       where: {
         email: req.params.email
       }
     }).then(function(result) {
-      console.log(result);
+      console.log("this is the result of get request", result);
       res.json(result);
     })
   })

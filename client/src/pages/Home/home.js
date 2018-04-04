@@ -17,7 +17,7 @@ class Home extends Component {
   this.handleInput = this.handleInput.bind(this);
   this.handleLoginSubmit =  this.handleLoginSubmit.bind(this);
   this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
-  //this.PostUserCredentials = this.PostUserCredentials.bind(this);
+  this.PostUserCredentials = this.PostUserCredentials.bind(this);
 
     this.state = {
       password: "",
@@ -67,15 +67,18 @@ class Home extends Component {
     });
 
     const promise = auth.signInWithEmailAndPassword(this.state.email, this.state.password);
-
+    promise.then(() => {
+      auth.onAuthStateChanged(firebaseUser => {
+          if (firebaseUser) {
+            console.log(firebaseUser);
+            window.location = "/search";
+          } else {
+            console.log("not logged in");
+          }
+        })
+    }
+    )
     promise.catch(error => console.log(error.message));
-
-    auth.onAuthStateChanged(firebaseUser => {
-      if (firebaseUser) {
-        console.log(firebaseUser);
-        window.location = "/search";
-      }
-    });
   }
 
   //handle the submission of signing people up
@@ -99,10 +102,19 @@ class Home extends Component {
       console.log("email invalid");
     }
     const promise =  auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
-
+    promise.then(() => {
+      auth.onAuthStateChanged(firebaseUser => {
+          if (firebaseUser) {
+            //console.log(firebaseUser);
+            window.location = "/search";
+          } else {
+            console.log("not logged in");
+          }
+        })
+    })
     promise.catch(error => console.log(error.message));
 
-    // this.PostUserCredentials();
+    this.PostUserCredentials();
 
     auth.onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
@@ -117,20 +129,20 @@ class Home extends Component {
     //setup API route to submit comment and store in backend
   }
 
-  // PostUserCredentials() {
-  //   console.log("post route hit in home.js");
-  //
-  //   const data = {
-  //     name: this.state.name,
-  //     email: this.state.email
-  //   }
-  //
-  //   API.postUserCredentials(data)
-  //   .then(res => {
-  //     console.log('quicksearch data', res);
-  //   })
-  //   .catch(err => console.log(err));
-  // }
+  PostUserCredentials() {
+    console.log("post route hit in home.js");
+
+    const data = {
+      username: this.state.name,
+      email: this.state.email
+    }
+
+    API.postUserCredentials(data)
+    .then(res => {
+      console.log('quicksearch data', res);
+    })
+    .catch(err => console.log(err));
+  }
 
 
   render() {
