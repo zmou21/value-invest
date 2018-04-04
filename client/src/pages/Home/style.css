@@ -2,12 +2,14 @@ body, html {
   height: 100%;
   margin: 0;
   font: 400 15px/1.8 "Lato", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   color: #777;
 }
 
+
 .bgimg-1, .bgimg-2, .bgimg-3 {
   position: relative;
-  opacity: 0.65;
+  opacity: 0.75;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,12 +17,12 @@ body, html {
 
 }
 .bgimg-1 {
-  background-image: url("../../images/abstract.jpg");
+  background-image: url("../../images/background_2.jpeg");
   min-height: 730px;
 }
 
 .bgimg-2 {
-  background-image: url("../../images/home_background.png");
+  background-image: url("../../images/abstract.jpg");
   min-height:600px;
 }
 
@@ -49,15 +51,18 @@ body, html {
 h3 {
   letter-spacing: 5px;
   text-transform: uppercase;
-  font: 20px "Lato", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   color: #111;
   text-align: center;
 }
 
 #header-title {
   color: white;
+  background-color: grey;
+  width: auto;
+  padding: 2%;
+  opacity: 0.9;
 }
-
 
 /*=============================================================*/
      /*================== Grid Container ================== */
@@ -69,10 +74,9 @@ h3 {
   grid-gap: 10px;
   background-color: #ddd;
   padding: 10px;
-  height:
 }
 .grid-container>div {
-  background-color: rgba(255, 255, 255, 0.8);
+  /* //background-color: rgba(255, 255, 255, 0.8); */
   text-align: center;
   padding:20px 0;
   font-size: 30px;
@@ -147,10 +151,11 @@ h3 {
   left: 0;
   top: 0;
   width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  /* height: 100%; /* Full height */ */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-radius: 10px;
 }
 
 /* Modal Content */
@@ -191,6 +196,8 @@ h3 {
   left: 2%;
   display: inline;
   top: 2%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 800px) {

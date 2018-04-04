@@ -1,8 +1,10 @@
 /* dashboard styling */
 
-/* body {
-   background: linear-gradient(to bottom, #003366 6%, #cc3300 116%);
-} */
+body {
+   background-image: url("https://www.planwallpaper.com/static/images/elegant-grey-illumination-background-presentations-powerpoint-backgrounds.jpg");
+}
+
+
 
 /*=============================================================*/
      /*================== Temporary Navbar ================== */
@@ -27,7 +29,7 @@
   /* padding: 10px; */
 }
 .grid-container>div {
-  background: linear-gradient(to bottom, #003366 6%, #cc3300 116%);
+  /* background: linear-gradient(to bottom, #003366 6%, #cc3300 116%); */
   padding:20px 0;
   font-size: 30px;
   position: relative;
@@ -56,6 +58,7 @@
   transform: translate(-50%, -50%);
   top:50%;
   left:58%;
+  color: black;
   /* background-color: grey;
   width: 125px;
   height: 100px;
@@ -87,7 +90,7 @@
 }
 
 .search-icon:hover {
-  color: lightblue;
+  color: white;
   cursor: pointer;
   /* transform: scale(1.25); */
 }
@@ -264,6 +267,7 @@
   font-size: 0.7em;
   cursor:pointer;
   margin-left: 1%;
+  margin-top: 1%;
 }
 
 .favorite:hover {
@@ -275,29 +279,30 @@
 
 .quote-list {
   float: left;
-  width: 50%;
+  width: 35%;
   text-align: center;
   font-size: 25px;
-  color: grey;
+  color: white;
 }
 
 
 .left-list {
-  background-color: white;
+  background-color: grey;
   list-style-type: none;
-  width: 47%;
+  /* width: 95%; */
   height: 30%;
   /* border: 1px solid white; */
   float: left;
   padding: 0px;
-  margin: 5px;
-  box-shadow:0px 0px 30px #333;
-  border-radius:5px;
+  margin: 14%;
+  box-shadow: 0px 0px 30px #333;
+  border-radius: 5px;
+  opacity: 0.65;
 }
 
 .middle-list {
   background-color: white;
-  width: 49.4%;
+  width: 95%;
   height: 30%;
   /* border: 1px solid white; */
   float: left;
@@ -324,10 +329,11 @@
 
 /* chart styling */
 .chart{
-  width: 49%;
+  width: 64%;
   height: 30%;
   /* border: 1px solid white; */
   float: left;
+  margin: 1% 0% 2% 1%;
 }
 
 /* styling for company info */
@@ -336,11 +342,13 @@
   display: block;
   width: 50%;
   font-size: 25px;
-  color: grey;
+  color: white;
+  margin-top: 2%;
+  animation-delay: 2s;
 }
 
 .main-list {
-  background-color: white;
+  background-color: grey;
   list-style-type: none;
   width: auto;
   height: 30%;
@@ -350,6 +358,8 @@
   margin: 5px;
   box-shadow:0px 0px 30px #333;
   border-radius:5px;
+  opacity: 0.65;
+  margin-left: 1%;
 }
 .description-item {
   font-size: 0.8em;
@@ -367,7 +377,7 @@
 
 /* styling for company news */
 
-.companyNews {
+.company-news {
   float: right;
   width: 50%;
   font-size: 25px;
@@ -412,4 +422,25 @@
 .description-item-source {
   font-size: 0.5em;
   font-family: 'Josefin Sans', sans-serif;
+}
+
+#logout {
+  float: right;
+  margin: 0.5% 1%;
+}
+
+
+#animate-name {
+  margin: 2%;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 3em;
+  color: #555;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 }

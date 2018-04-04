@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 // var passport = require('passport');
 // var flash = require('connect-flash');
 // var ejs = require('ejs')
-const path = require("path");
+// const path = require("path");
 
 // Sets up the Express App
 // =============================================================
@@ -36,14 +36,14 @@ app.use(bodyParser.json());
 // app.use(flash());
 
 // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// } else {
-//   app.use(express.static("public"));
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+} else {
+  app.use(express.static("public"));
+}
 
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+// app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Routes
 // =============================================================

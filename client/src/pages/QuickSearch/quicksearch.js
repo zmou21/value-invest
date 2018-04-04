@@ -4,6 +4,7 @@ import { Stockname, Quotes, Companyinfo, Companynews } from "../../components/Di
 import Chart from "../../components/Charts";
 import API from "../../utils/API";
 import firebase from '../../firebase.js';
+import "../../css/dashboard.css";
 
 const auth = firebase.auth();
 
@@ -257,10 +258,11 @@ class Stocks extends Component {
 //className="grid-container"
   render() {
     return (
-      <div>
+      <div className="main-body">
         <div>
           <a onClick={this.logout} id="logout" style={{cursor: "pointer"}}>Logout</a>
-          <a href="/intrinsic" style={{cursor: "pointer", padding: "1%"}}>Deep Analysis</a>
+          <a href="/" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Home</a>
+          <a href="/intrinsic" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Deep Analysis</a>
           <h3 id="animate-name">Hello, {this.state.name}</h3>
         </div>
         <div>

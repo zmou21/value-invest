@@ -4,6 +4,9 @@ import "./style.css";
 import "./login.css";
 import firebase from '../../firebase.js';
 import API from "../../utils/API";
+import logo from "../../images/logo.png";
+import Video from "../../images/test_1.mp4";
+
 
 let database = firebase.database();
 const auth = firebase.auth();
@@ -105,7 +108,7 @@ class Home extends Component {
     promise.then(() => {
       auth.onAuthStateChanged(firebaseUser => {
           if (firebaseUser) {
-            //console.log(firebaseUser);
+            console.log(firebaseUser);
             window.location = "/search";
           } else {
             console.log("not logged in");
@@ -148,7 +151,7 @@ class Home extends Component {
           </div>
           <div className="login">
             <div className="logo">
-                <img src="#" alt="logo" width="200px" height="75px"/>
+                <img src={logo} alt="logo" width="200px" height="70px"/>
             </div>
             <div>
               <span id="loginbtn"><a onClick={this.toggleLogin} className="linkstyle">login</a>
@@ -159,9 +162,6 @@ class Home extends Component {
                   handleLoginSubmit={this.handleLoginSubmit}
                 />
               </span>
-            </div>
-          </div>
-            <div>
               <span id="signupbtn"><a onClick={this.toggleSignUp} className="linkstyle">Sign Up</a>
                 <SignupModal
                   name={this.state.name}
@@ -172,6 +172,7 @@ class Home extends Component {
                 />
               </span>
             </div>
+          </div>
         </div>
 
         <div>
@@ -179,28 +180,27 @@ class Home extends Component {
           <div className="grid-container">
             <div id="item1">
               <i className="far fa-money-bill-alt" id="fa1"></i>
-              <h3>Feature 1</h3>
+              <h3>Discounted Cash Flow Analysis</h3>
             </div>
             <div id="item2">
               <i className="far fa-money-bill-alt" id="fa2"></i>
-              <h3>Feature 2</h3>
+              <h3>Buy Sell Hold Recommendations</h3>
             </div>
             <div id="item3">
               <i className="far fa-money-bill-alt" id="fa3"></i>
-              <h3>Feature 3</h3>
+              <h3>Clean Interface</h3>
             </div>
           </div>
         </div>
 
         <div className="bgimg-2">
           <div className="caption">
-            <span className="border">TBD - Product Image placeholder</span>
           </div>
         </div>
 
         <div id="about">
           <h3>About</h3>
-          <p>Textalign Center; Parallax scrolling is a web site trend where the background content is moved at a different speed than the foreground content while scrolling. Nascetur per nec posuere turpis, lectus nec libero turpis nunc at, sed posuere mollis ullamcorper libero ante lectus, blandit pellentesque a, magna turpis est sapien duis blandit dignissim. Viverra interdum mi magna mi, morbi sociis. Condimentum dui ipsum consequat morbi, curabitur aliquam pede, nullam vitae eu placerat eget et vehicula. Varius quisque non molestie dolor, nunc nisl dapibus vestibulum at, sodales tincidunt mauris ullamcorper, dapibus pulvinar, in in neque risus odio. Accumsan fringilla vulputate at quibusdam sociis eleifend, aenean maecenas vulputate, non id vehicula lorem mattis, ratione interdum sociis ornare. Suscipit proin magna cras vel, non sit platea sit, maecenas ante augue etiam maecenas, porta porttitor placerat leo.</p>
+          <p>Textalign Center; This will be filled out soon! I promise! Nascetur per nec posuere turpis, lectus nec libero turpis nunc at, sed posuere mollis ullamcorper libero ante lectus, blandit pellentesque a, magna turpis est sapien duis blandit dignissim. Viverra interdum mi magna mi, morbi sociis. Condimentum dui ipsum consequat morbi, curabitur aliquam pede, nullam vitae eu placerat eget et vehicula. Varius quisque non molestie dolor, nunc nisl dapibus vestibulum at, sodales tincidunt mauris ullamcorper, dapibus pulvinar, in in neque risus odio. Accumsan fringilla vulputate at quibusdam sociis eleifend, aenean maecenas vulputate, non id vehicula lorem mattis, ratione interdum sociis ornare. Suscipit proin magna cras vel, non sit platea sit, maecenas ante augue etiam maecenas, porta porttitor placerat leo.</p>
         </div>
 
         <div className="bgimg-2">
@@ -224,14 +224,14 @@ class Home extends Component {
 
         <div className="bgimg-3">
           <div className="caption">
-            <span className="border">SCROLL UP</span>
+
           </div>
         </div>
 
         <div id="footer">
           <div id="footer-div">
-            <footer>
-              &copy 2018 MOUMEN
+            <footer style={{textAlign: "center"}}>
+              &copy; 2018 MOUMEN
             </footer>
           </div>
         </div>
