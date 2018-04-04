@@ -46,8 +46,9 @@ class Stocks extends Component {
     };
   }
 
-
+  //*********************************************
   //mounts component async
+  //*********************************************
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -60,7 +61,9 @@ class Stocks extends Component {
     });
   };
 
-  //logouts users that are signed in
+  //*********************************************
+    //logouts users that are signed in
+  //*********************************************
   logout() {
   auth.signOut()
     .then(() => {
@@ -225,6 +228,9 @@ class Stocks extends Component {
     });
   }
 
+  //*********************************************
+  //get users name to display on the page
+  //*********************************************
   getUsersName() {
     if(this.state.email) {
       API.getUsersName(this.state.email)
@@ -254,12 +260,13 @@ class Stocks extends Component {
       <div>
         <div>
           <a onClick={this.logout} id="logout" style={{cursor: "pointer"}}>Logout</a>
-          <h3>Name: {this.state.name}</h3>
-      </div>
+          <a href="/intrinsic" style={{cursor: "pointer", padding: "1%"}}>Deep Analysis</a>
+          <h3 id="animate-name">Hello, {this.state.name}</h3>
+        </div>
         <div>
           {this.state.isHidden ? (
               <div className="search-button">
-                <h3 className="quicksearch-name">Quick Search</h3>
+                <h3 className="quicksearch-name">Start Your Search</h3>
                 <i className="search-toggle fas fa-search" onClick={this.searchToggle}></i>
               </div>
               ) : (
