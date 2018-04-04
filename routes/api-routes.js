@@ -80,16 +80,30 @@ let ticker = "";
   //reserved
   router.post("/api/newuser", (req, res) => {
     console.log("------------------------------------");
-    console.log("api-route for new user is being hit", req.body);
+    console.log("api-route for new user is being hit", req.body.data.data);
     db.User.create({
-      userName: req.body.username,
-      email: req.body.email,
-      name: req.body.name
+      userName: "placeholder",
+      email: req.body.data.email,
+      name: req.body.data.name
     }).then(function(data) {
-        console.log(data);
+        //console.log(data);
     })
     .catch(err => console.log(err));
   });
+
+  router.get("/api/getuserdata/:email", (req, res) => {
+    console.log("------------------------------------");
+    console.log("api-route for to get users name is being hit", req.params.email);
+    //console.log("api-route for to get users name is being hit", req);
+    db.User.findOne({
+      where: {
+        email: req.params.email
+      }
+    }).then(function(result) {
+      console.log(result);
+      res.json(result);
+    })
+  })
 
   // app.put("/api/vote", function(req, res) {
   //   //to update the vote if need be
