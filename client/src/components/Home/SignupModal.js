@@ -21,10 +21,6 @@
             <div className="label-text">Email</div>
           </label>
           <label>
-            <input type="text" id="userName-signup" name="username" value={props.username} onChange={props.handleInput} required />
-            <div className="label-text">Username</div>
-          </label>
-          <label>
               <input type="password" id="password-signup" name="password" value={props.password} onChange={props.handleInput} required />
               <div className="label-text">Password</div>
           </label>
@@ -35,3 +31,9 @@
   );
 
   // <form action="dashboard.html"></form>
+  //
+
+  // <label>
+  //   <input type="text" id="userName-signup" name="username" value={props.username} onChange={props.handleInput} required />
+  //   <div className="label-text">Username</div>
+  // </label>
