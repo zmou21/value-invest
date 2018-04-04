@@ -7,22 +7,18 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     email: { //users email
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
       // allowNull: false,
       // validate: {
       //   isEmail: true
       // }
     },
-    password: { //users password
-      type: DataTypes.STRING,
-//       validate: {
-//         len: [7, 25],
-//         isAlphanumeric: true
-//       }
-    },
     image: { // users image (when we get to it)
       type: DataTypes.STRING,
       allowNull: true
+    },
+    name: {
+      type: DataTypes.STRING
     }
   });
 
@@ -35,3 +31,12 @@ module.exports = function(sequelize, DataTypes) {
 
   return User;
 };
+
+
+// password: { //users password
+//   type: DataTypes.STRING
+// //       validate: {
+// //         len: [7, 25],
+// //         isAlphanumeric: true
+// //       }
+// },

@@ -91,5 +91,11 @@ export default {
       })
       .catch(err => console.log(err))
     )
+  },
+  postUserCredentials: function(data) {
+    return (
+      axios.post("/api/newuser", {data: data})
+      .catch(err => console.log(err))
+    )
   }
 };

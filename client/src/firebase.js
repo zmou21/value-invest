@@ -1,6 +1,5 @@
 //firebase setup
-
-import firebase from 'firebse';
+import firebase from 'firebase';
 
 // Initialize Firebase
 const config = {
@@ -8,7 +7,7 @@ const config = {
   authDomain: "value-invest.firebaseapp.com",
   databaseURL: "https://value-invest.firebaseio.com",
   projectId: "value-invest",
-  storageBucket: "",
+  storageBucket: "value-invest.appspot.com",
   messagingSenderId: "1066197650482"
 };
 firebase.initializeApp(config);

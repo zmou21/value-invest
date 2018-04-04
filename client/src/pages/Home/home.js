@@ -2,16 +2,21 @@ import React, { Component } from "react";
 import { Form, LoginModal, SignupModal } from "../../components/Home";
 import "./style.css";
 import "./login.css";
-// import firebase from '../firebase/js';
+import firebase from '../../firebase.js';
+import API from "../../utils/API";
 
-// let database = firebase.database();
+let database = firebase.database();
+const auth = firebase.auth();
 
 class Home extends Component {
   constructor() {
     super();
 
-  this.toggle = this.toggle.bind(this);
-  this.handleLoginInput = this.handleLoginInput.bind(this);
+  this.toggleLogin = this.toggleLogin.bind(this);
+  this.toggleSignUp = this.toggleSignUp.bind(this);
+  this.handleInput = this.handleInput.bind(this);
+  this.handleLoginSubmit =  this.handleLoginSubmit.bind(this);
+  this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
 
     this.state = {
       username: "",
@@ -20,121 +25,113 @@ class Home extends Component {
       name: "",
       email: "",
       comment: "",
-      toggle: false
+      toggleLogin: false,
+      toggleSignup: false
     }
   }
 
-  toggle() {
-    console.log("modal is being clicked");
-    // this.setState({
-    //   toggle: this.state.toggle
-    // })
+  //toggles log in modal
+  toggleLogin() {
+    //console.log("login modal is being clicked");
     this.setState(prevState => ({
-        toggle: !prevState.toggle
+        toggleLogin: !prevState.toggleLogin
     }));
   }
 
-  // //login function
-  handleLoginInput(event) {
-      const name = event.target.name;
-      const value =  event.target.value;
-
-      this.setState({
-        [name]: value
-      });
-      // if (email.length < 4) {
-      // 	alert("Please enter a valid email address");
-      // 	return;
-      // }
-      // else if (password.length < 5) {
-      // 	alert("Please enter a valid password");
-      // 	return;
-      // }
+  //toggles sign up modal
+  toggleSignUp() {
+    //console.log("signup modal is being clicked");
+    this.setState(prevState => ({
+        toggleSignUp: !prevState.toggleSignUp
+    }));
   }
 
-  handleFormSubmit() {
-    //handleformsubmit
+  //form input function
+  handleInput(event) {
+    const name = event.target.name;
+    const value =  event.target.value;
+
+    this.setState({
+      [name]: value
+    });
   }
 
+  //handle the submission of logging people in
+  handleLoginSubmit(event) {
+    //console.log("login worked");
+    event.preventDefault();
 
-  // //signup function
-  // signup(event) {
-  //   event.preventDefault();
-  //     var email = document.getElementById("email-input-signup").value;
-  //     var password =  document.getElementById("password-input-signup").value;
-  //     var name = document.getElementById("name-input-signup").value
-  //
-  //     database.ref().push({
-  //       loginName: name,
-  //       dateAdded: firebase.database.ServerValue.TIMESTAMP
-  //     });
-  //
-  //     var auth = firebase.auth();
-  //
-  //     if (email.length < 0) {
-  //       alert("Please enter a valid email address");
-  //       return;
-  //     }
-  //     else if (password.length < 5) {
-  //       alert("Please enter a valid password");
-  //       return;
-  //     }else if ($("#cancel").on("click", function(event){
-  //         $(".signup-modal-container").toggleClass("hidden")
-  //     }));
-  //
-  //     var promise = auth.createUserWithEmailAndPassword(email, password);
-  //
-  //     promise.catch(error => console.log(error.message));
-  // }
-  //
-  // //logout function (move to dashboard)
-  // logout() {
-  //   firebase.auth().signOut().then(function() {
-  //       swal("You logged out");
-  //       window.location = "index.html";
-  //   }).catch(function(error) {
-  //     console.log(error);
-  //   });
-  //
-  //   const uid = [];
-  //
-  //   firebase.auth().onAuthStateChanged(function(user) {
-  //    window.user = user; // user is undefined if no user signed in
-  //    uid.push(user.uid);
-  //
-  //     database.ref('users/' + uid[0]).on("child_added", function(snapshot) {
-  //       var game = snapshot.val().gameToken;
-  //     });
-  //
-  //     database.ref('users/' + uid[0]).push({
-  //       // hangman: this.wins,
-  //       gameToken: gameToken
-  //     });
-  //   });
-  //   console.log(uid);
-  // }
+    database.ref().push({
+      username: this.state.username,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
 
-  // //handleforminput
+    const promise = auth.signInWithEmailAndPassword(this.state.email, this.state.password);
 
-  // //handleformsubmit
+    promise.catch(error => console.log(error.message));
 
-  // firebase() {
-  //   firebase.auth().onAuthStateChanged(firebaseUser => {
-  //
-  //       if (firebaseUser) {
-  //         console.log(firebaseUser);
-  //         window.location = "game.html";
-  //       }
-  //       else {
-  //         console.log("Not logged in");
-  //       }
-  //     });
-  // }
+    auth.onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        console.log(firebaseUser);
+        window.location = "/search";
+      }
+      else {
+        console.log("Not logged in");
+      }
+    });
+  }
 
-        //const auth = firebase.auth();
-        // var promise = auth.signInWithEmailAndPassword(email, password);
-        //
-        // promise.catch(error => console.log(error.message));
+  //handle the submission of signing people up
+  handleSignUpSubmit(event) {
+    console.log("signup worked");
+    event.preventDefault();
+
+    database.ref().push({
+      username: this.state.username,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
+
+    if (this.state.username.length < 0) {
+      alert("Please enter a username");
+      return;
+    }
+    else if (this.state.password.length < 5) {
+      alert("Please enter a valid password");
+      return;
+    } else if (!this.state.email) {
+      console.log("email invalid");
+    }
+    const promise =  auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
+
+    promise.catch(error => console.log(error.message));
+
+    auth.onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        console.log(firebaseUser);
+        window.location = "/search";
+      }
+      else {
+        console.log("Not logged in");
+      }
+    });
+  }
+
+  PostUserCredentials() {
+    console.log("post route hit in home.js");
+
+    const data = {
+      name: this.state.name,
+      username: this.state.username,
+      email: this.state.email
+    }
+
+    API.postUserCredentials(data)
+    .then(res => {
+      console.log('quicksearch data', res);
+    })
+    .catch(err => console.log(err));
+  }
+
 
   render() {
     return (
@@ -148,16 +145,28 @@ class Home extends Component {
             <div className="logo">
                 <img src="#" alt="logo" width="200px" height="75px"/>
             </div>
-              <span id="loginbtn"><a onClick={this.toggle} className="linkstyle">login</a>
+            <div>
+              <span id="loginbtn"><a onClick={this.toggleLogin} className="linkstyle">login</a>
                 <LoginModal
-                  toggle={this.state.toggle}
-                  toggleClick={this.toggle}
-                  handleLoginInput={this.handleLoginInput}
+                  toggle={this.state.toggleLogin}
+                  toggleClick={this.toggleLogin}
+                  handleInput={this.handleInput}
+                  handleLoginSubmit={this.handleLoginSubmit}
                 />
               </span>
-
+            </div>
           </div>
-
+            <div>
+              <span id="signupbtn"><a onClick={this.toggleSignUp} className="linkstyle">Sign Up</a>
+                <SignupModal
+                  name={this.state.name}
+                  toggle={this.state.toggleSignUp}
+                  toggleClick={this.toggleSignUp}
+                  handleInput={this.handleInput}
+                  handleSignUpSubmit={this.handleSignUpSubmit}
+                />
+              </span>
+            </div>
         </div>
 
         <div>

@@ -77,6 +77,20 @@ let ticker = "";
     });
   });
 
+  //reserved
+  router.post("/api/newuser", (req, res) => {
+    console.log("------------------------------------");
+    console.log("api-route for new user is being hit", req.body);
+    db.User.create({
+      userName: req.body.username,
+      email: req.body.email,
+      name: req.body.name
+    }).then(function(data) {
+        console.log(data);
+    })
+    .catch(err => console.log(err));
+  });
+
   // app.put("/api/vote", function(req, res) {
   //   //to update the vote if need be
   //   db.Votes.update({

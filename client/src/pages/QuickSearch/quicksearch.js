@@ -3,6 +3,9 @@ import { Input, FormBtn } from "../../components/Form";
 import { Stockname, Quotes, Companyinfo, Companynews } from "../../components/Display";
 import Chart from "../../components/Charts";
 import API from "../../utils/API";
+import firebase from '../../firebase.js';
+
+const auth = firebase.auth();
 
 class Stocks extends Component {
   constructor() {
@@ -14,7 +17,7 @@ class Stocks extends Component {
     this.searchToggle = this.searchToggle.bind(this);
     this.getChartData = this.getChartData.bind(this);
     this.getCompanyNews = this.getCompanyNews.bind(this);
-
+    this.logout = this.logout.bind(this);
 
     this.state = {
       ticker: "",
@@ -36,15 +39,35 @@ class Stocks extends Component {
       logo: "",
       isHidden: true,
       chartData: {},
-      companyNews: []
+      companyNews: [],
+      username: ""
     };
   }
 
 
-  // Add code here to get all books from the database and save them to this.state.books
-  // componentDidMount() { //componentWillMount() another component option
-  //   this.getBook();
-  // }
+  //mounts component async
+  componentDidMount() { //componentWillMount() another component option
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        window.location = "/";
+      }
+    });
+  };
+
+  //logouts users that are signed in
+  logout() {
+  auth.signOut()
+    .then(() => {
+      this.setState({
+        username: null
+      });
+      window.location = "/";
+    })
+    .catch(err => console.log(err));
+  }
+
 
   //toggles the search icon to show and hide the search field
   searchToggle(event) {
@@ -213,6 +236,9 @@ class Stocks extends Component {
   render() {
     return (
       <div>
+        <div>
+          <a onClick={this.logout} id="logout" style={{cursor: "pointer"}}>Logout</a>
+        </div>
         <div>
           {this.state.isHidden ? (
               <div className="search-button">
