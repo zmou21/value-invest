@@ -62,7 +62,7 @@ class Home extends Component {
     event.preventDefault();
 
     database.ref().push({
-      username: this.state.username,
+      name: this.state.name,
       dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
@@ -84,7 +84,7 @@ class Home extends Component {
     event.preventDefault();
 
     database.ref().push({
-      username: this.state.username,
+      name: this.state.name,
       dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
