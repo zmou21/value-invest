@@ -108,7 +108,7 @@ class Home extends Component {
     auth.onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
         console.log(firebaseUser);
-        window.location = "/search";
+        //window.location = "/search";
       }
 
     });
