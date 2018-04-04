@@ -113,6 +113,10 @@ class Home extends Component {
     });
   }
 
+  handleFormSubmit() {
+    //setup API route to submit comment and store in backend
+  }
+
   PostUserCredentials() {
     console.log("post route hit in home.js");
 
@@ -203,7 +207,13 @@ class Home extends Component {
         <div id="contact">
           <div id="contact-div">
             <h3>Contact Me</h3>
-            <Form />
+            <Form
+              name={this.state.name}
+              comment={this.state.comment}
+              email={this.state.email}
+              handleInput={this.handleInput}
+              handleSignUpSubmit={this.handleSignUpSubmit}
+            />
           </div>
         </div>
 
