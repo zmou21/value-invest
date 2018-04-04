@@ -65,7 +65,7 @@ class Stocks extends Component {
   auth.signOut()
     .then(() => {
       this.setState({
-        username: null
+        email: null
       });
       window.location = "/";
     })

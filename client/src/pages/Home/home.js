@@ -88,8 +88,8 @@ class Home extends Component {
       dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
-    if (this.state.username.length < 0) {
-      alert("Please enter a username");
+    if (this.state.name.length < 0) {
+      alert("Please enter a you name");
       return;
     }
     else if (this.state.password.length < 5) {
