@@ -17,6 +17,7 @@ class Home extends Component {
   this.handleInput = this.handleInput.bind(this);
   this.handleLoginSubmit =  this.handleLoginSubmit.bind(this);
   this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
+  this.PostUserCredentials = this.PostUserCredentials.bind(this);
 
     this.state = {
       username: "",
@@ -75,9 +76,6 @@ class Home extends Component {
         console.log(firebaseUser);
         window.location = "/search";
       }
-      else {
-        console.log("Not logged in");
-      }
     });
   }
 
@@ -105,14 +103,14 @@ class Home extends Component {
 
     promise.catch(error => console.log(error.message));
 
+    this.PostUserCredentials();
+
     auth.onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
         console.log(firebaseUser);
         window.location = "/search";
       }
-      else {
-        console.log("Not logged in");
-      }
+
     });
   }
 
@@ -121,7 +119,6 @@ class Home extends Component {
 
     const data = {
       name: this.state.name,
-      username: this.state.username,
       email: this.state.email
     }
 
