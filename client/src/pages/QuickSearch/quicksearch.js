@@ -18,6 +18,7 @@ class Stocks extends Component {
     this.getChartData = this.getChartData.bind(this);
     this.getCompanyNews = this.getCompanyNews.bind(this);
     this.logout = this.logout.bind(this);
+    this.getUsersName = this.getUsersName.bind(this);
 
     this.state = {
       ticker: "",
@@ -40,16 +41,19 @@ class Stocks extends Component {
       isHidden: true,
       chartData: {},
       companyNews: [],
-      username: ""
+      email: "",
+      name: ""
     };
   }
 
 
   //mounts component async
-  componentDidMount() { //componentWillMount() another component option
+  componentDidMount() {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user });
+        //console.log(user);
+        this.setState({ user, email: user.email });
+        this.getUsersName();
       } else {
         window.location = "/";
       }
@@ -221,6 +225,18 @@ class Stocks extends Component {
     });
   }
 
+  getUsersName() {
+    if(this.state.email) {
+      API.getUsersName(this.state.email)
+      .then(res => {
+        console.log("from database", res);
+        this.setState({
+          name: res.data.name
+        })
+      })
+    }
+  }
+
   getTickers() {
     //   API.getTickers()
     //   .then(res => {
@@ -238,7 +254,8 @@ class Stocks extends Component {
       <div>
         <div>
           <a onClick={this.logout} id="logout" style={{cursor: "pointer"}}>Logout</a>
-        </div>
+          <h3>Name: {this.state.name}</h3>
+      </div>
         <div>
           {this.state.isHidden ? (
               <div className="search-button">
