@@ -115,18 +115,11 @@ class Home extends Component {
     promise.catch(error => console.log(error.message));
 
     this.PostUserCredentials();
-
-    auth.onAuthStateChanged(firebaseUser => {
-      if (firebaseUser) {
-        console.log(firebaseUser);
-        window.location = "/search";
-      }
-
-    });
   }
 
   handleFormSubmit() {
     //setup API route to submit comment and store in backend
+    alert("Form Submitted!")
   }
 
   PostUserCredentials() {
