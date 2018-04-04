@@ -93,8 +93,19 @@ export default {
     )
   },
   postUserCredentials: function(data) {
+    //console.log(data);
     return (
       axios.post("/api/newuser", {data: data})
+      .catch(err => console.log(err))
+    )
+  },
+  getUsersName: function(email) {
+    console.log("from api utils folder", email);
+    return (
+      axios.get("/api/getuserdata/" + email)
+      .then(function(response) {
+        return response;
+      })
       .catch(err => console.log(err))
     )
   }
