@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Input, FormBtn } from "../../components/Form";
-import { Stockname } from "../../components/Display";
+import { Stockname, ShowAnalysis } from "../../components/Display";
 import Chart from "../../components/Charts";
 import API from "../../utils/API";
+import firebase from '../../firebase.js';
+
+const auth = firebase.auth();
 
 class Value extends Component {
   constructor() {
@@ -15,6 +18,7 @@ class Value extends Component {
     this.searchToggle = this.searchToggle.bind(this);
     this.advancedYahooData = this.advancedYahooData.bind(this);
     this.stockRecommendation = this.stockRecommendation.bind(this);
+    this.formatData = this.formatData.bind(this);
 
     this.state = {
       isHidden: true,
@@ -54,7 +58,54 @@ class Value extends Component {
       totalNPVfcf: 0,
       year10FcfValue: "",
       companyValue: "",
-      instrinicValueDCF: ""
+      instrinicValueDCF: "",
+      recommendation: "",
+      name: "",
+      email: ""
+    }
+  }
+
+  //*********************************************
+  //mounts component async
+  //*********************************************
+  componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        //console.log(user);
+        this.setState({ user, email: user.email });
+        this.getUsersName();
+      } else {
+        window.location = "/";
+      }
+    });
+  };
+
+  //*********************************************
+    //logouts users that are signed in
+  //*********************************************
+  logout() {
+  auth.signOut()
+    .then(() => {
+      this.setState({
+        email: null
+      });
+      window.location = "/";
+    })
+    .catch(err => console.log(err));
+  }
+
+  //*********************************************
+  //get users name to display on the page
+  //*********************************************
+  getUsersName() {
+    if(this.state.email) {
+      API.getUsersName(this.state.email)
+      .then(res => {
+        console.log("from database", res);
+        this.setState({
+          name: res.data.name
+        })
+      })
     }
   }
 
@@ -128,8 +179,13 @@ class Value extends Component {
     this.state.companyValue = (this.state.year10FcfValue + this.state.totalNPVfcf + this.state.totalCash) - this.state.totalDebt;
     //console.log("companyvalue", this.state.companyValue);
 
-    this.state.instrinicValueDCF = this.state.companyValue / this.state.sharesOutstanding;
-    console.log(`Company Value $${this.state.instrinicValueDCF}`);
+    let calculateIV = this.state.companyValue / this.state.sharesOutstanding;
+    calculateIV = calculateIV.toFixed(2);
+
+    this.setState({
+      instrinicValueDCF: calculateIV
+    })
+    //console.log(`Company Value $${this.state.instrinicValueDCF}`);
 
     this.stockRecommendation();
   }
@@ -141,12 +197,20 @@ class Value extends Component {
   stockRecommendation() {
     if(this.state.price > this.state.instrinicValueDCF) {
       console.log("Don't buy");
+      this.setState({
+        recommendation: "Don't Buy!"
+      })
     }
     else if(this.state.price === this.state.instrinicValueDCF) {
-      console.log("hold, even priced");
+      this.setState({
+        recommendation: "Hold"
+      })
     }
     else if (this.state.price < this.state.instrinicValueDCF) {
       console.log("Buy!!");
+      this.setState({
+        recommendation: "Buy!"
+      })
     }
     else {
       console.log("error!");
@@ -279,9 +343,88 @@ class Value extends Component {
       })
       // .catch(err => console.log(err))
 
+      //function called here to format data inputs
+      this.formatData();
+
     })
 
   }
+
+  formatData(radix) {
+    //operating margin
+    let opM = this.state.operatingMargins * 100;
+    opM = opM.toFixed(2);
+    opM = parseInt(opM, radix);
+
+    //profit marginproM
+    let proM = this.state.profitMargin * 100;
+    proM = proM.toFixed(2);
+    proM = parseInt(proM, radix);
+
+    //gross margin
+    let gM = this.state.grossMargin * 100;
+    gM = gM.toFixed(2);
+    gM = parseInt(gM, radix);
+
+    //dividendYield
+    let dY = this.state.dividendYield * 100;
+    dY = dY.toFixed(2);
+    dY = parseInt(dY, radix);
+
+    //dividendYield
+    let roa = this.state.ROA * 100;
+    roa = roa.toFixed(2);
+    roa = parseInt(roa, radix);
+
+    //dividendYield
+    let roe = this.state.ROE * 100;
+    roe = roe.toFixed(2);
+    roe = parseInt(roe, radix);
+
+    //median target price
+    let mTP = this.state.targetMedianPrice;
+    mTP = mTP.toFixed(2);
+    mTP = parseInt(mTP, radix);
+
+    //median target price
+    let aTP = this.state.targetMeanPrice;
+    aTP = aTP.toFixed(2);
+    aTP = parseInt(aTP, radix);
+
+    //current ration
+
+    //quick ration
+
+    //beta
+
+    //debtToEquity
+
+    //earnings growthRate
+
+    //rev growth rate
+
+    //forwardPE
+
+    //price to priceBook
+
+    //price to sales
+
+    //price to earnings
+
+
+    this.setState({
+      operatingMargins: opM,
+      profitMargin: proM,
+      grossMargin: gM,
+      dividendYield: dY,
+      ROA: roa,
+      ROE: roe,
+      targetMedianPrice: mTP,
+      targetMeanPrice: aTP
+    })
+  }
+
+  //create function to calculate operating costs, etc.
 
   //*********************************************
   //renders to the page
@@ -289,6 +432,10 @@ class Value extends Component {
   render() {
     return(
       <div>
+          <div>
+            <a onClick={this.logout} id="logout" style={{cursor: "pointer"}}>Logout</a>
+            <h3 id="animate-name">Hello, {this.state.name}</h3>
+          </div>
           <div className="search-button">
             <h3 className="quicksearch-name">Deep Search</h3>
             <i className="search-toggle fas fa-search" onClick={this.searchToggle}></i>
@@ -313,6 +460,32 @@ class Value extends Component {
                 <Stockname
                   companyName={this.state.companyName}
                   website={this.state.website}
+                />
+                <ShowAnalysis
+                  currentRatio={this.state.currentRatio}
+                  debtToEquity={this.state.debtToEquity}
+                  freeCashFlow={this.state.freeCashFlow}
+                  grossMargin={this.state.grossMargin}
+                  grossProfit={this.state.grossProfit}
+                  operatingCashflow={this.state.operatingCashflow}
+                  operatingMargins={this.state.operatingMargins}
+                  quickRatio={this.state.quickRatio}
+                  profitMargin={this.state.profitMargin}
+                  ROA={this.state.ROA}
+                  ROE={this.state.ROE}
+                  targetMeanPrice={this.state.targetMeanPrice}
+                  targetMedianPrice={this.state.targetMedianPrice}
+                  totalCash={this.state.totalCash}
+                  totalDebt={this.state.totalDebt}
+                  totalRevenue={this.state.totalRevenue}
+                  forwardPE={this.state.forwardPE}
+                  beta={this.state.beta}
+                  forwardEPS={this.state.forwardEPS}
+                  PEG={this.state.PEG}
+                  dividendRate={this.state.dividendRate}
+                  dividendYield={this.state.dividendYield}
+                  instrinicValueDCF={this.state.instrinicValueDCF}
+                  recommendation={this.state.recommendation}
                 />
               </div>
             )}
