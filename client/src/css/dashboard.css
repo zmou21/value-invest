@@ -378,8 +378,8 @@ body {
 /* styling for company news */
 
 .company-news {
-  float: right;
-  width: 50%;
+  /* float: right; */
+  width: 95%;
   font-size: 25px;
   color: grey;
 }
