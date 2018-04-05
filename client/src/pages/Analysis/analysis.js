@@ -62,7 +62,8 @@ class Value extends Component {
       instrinicValueDCF: "",
       recommendation: "",
       name: "",
-      email: ""
+      email: "",
+      logo: ""
     }
   }
 
@@ -104,7 +105,7 @@ class Value extends Component {
       .then(res => {
         console.log("from database", res);
         this.setState({
-          name: res.data.name
+          name: res.data.username
         })
       })
     }
@@ -199,18 +200,18 @@ class Value extends Component {
     if(this.state.price > this.state.instrinicValueDCF) {
       console.log("Don't buy");
       this.setState({
-        recommendation: "Don't Buy!"
+        recommendation: `The price of the stock($${this.state.price}) is overvalued, relative to it's intrinsic value. Based on our analysis, we recommend a "Do Not Buy!"`
       })
     }
     else if(this.state.price === this.state.instrinicValueDCF) {
       this.setState({
-        recommendation: "Hold"
+        recommendation: `The price of the stock(${this.state.price}) is equal to it's intrinsic value. Based on our analysis, we recommend a "Hold" if you own the stock or establishing a small position.`
       })
     }
     else if (this.state.price < this.state.instrinicValueDCF) {
       console.log("Buy!!");
       this.setState({
-        recommendation: "Buy!"
+        recommendation: `The price of the stock(${this.state.price}) is undervalued, relative to it's intrinsic value. Based on our analysis, we recommend a "Buy!"`
       })
     }
     else {
@@ -233,10 +234,10 @@ class Value extends Component {
   //*********************************************
   postFavorite(event) {
     event.preventDefault();
-    console.log("post route hit in quicksearch");
+    //console.log("post route hit in quicksearch");
     API.postFavorite(this.state.companyName)
     .then(res => {
-      console.log('quicksearch data', res);
+      //console.log('quicksearch data', res);
     })
     .catch(err => console.log(err));
   }
@@ -349,6 +350,17 @@ class Value extends Component {
 
     })
 
+    API.getStockLogo(this.state.ticker)
+    .then(res => {
+      // console.log(res.data.url);
+      if(this.state.ticker) {
+        this.setState({
+          logo: res.data.url
+        });
+      }
+    })
+    .catch(err => console.log(err));
+
   }
 
   formatData(radix) {
@@ -437,11 +449,10 @@ class Value extends Component {
             <a onClick={this.logout} id="logout" style={{cursor: "pointer"}}>Logout</a>
             <a href="/" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Home</a>
             <a href="/search" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Quick Search</a>
+            <a href="/intrinsic" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Search Again</a>
             <h3 id="animate-name">Hello, {this.state.name}</h3>
           </div>
           <div className="search-button">
-            <h3 className="quicksearch-name">Deep Search</h3>
-            <i className="search-toggle fas fa-search" onClick={this.searchToggle}></i>
           </div>
           <div>
             {!this.state.companyName ? ( //ternary operator that displays only if stock is searched
@@ -463,6 +474,8 @@ class Value extends Component {
                 <Stockname
                   companyName={this.state.companyName}
                   website={this.state.website}
+                  companyLogo={this.state.logo}
+                  postFavorite={this.postFavorite}
                 />
                 <ShowAnalysis
                   currentRatio={this.state.currentRatio}

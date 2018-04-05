@@ -5,80 +5,87 @@ import React from "react";
 
 export const ShowAnalysis = props => (
   <div className="show-analysis">
-    <div>
-      <h3>Instrinsic Value: ${props.instrinicValueDCF}</h3>
-      <p>{props.recommendation}</p>
+    <div id="analysis">
+      <h3 id="intrinsic">Instrinsic Value: ${props.instrinicValueDCF}</h3>
+      <p id="recommendation">{props.recommendation}</p>
     </div>
-    <ul className="main-list">
+    <ul className="main-list-analysis-1">
       <h3>Price Technicals</h3>
-      <li className="description-item"><strong className="title-info">Mean Target Price</strong><br></br>{props.targetMeanPrice}</li>
-      <li className="description-item"><strong>Median Target Price</strong><br></br>{props.targetMedianPrice}</li>
-      <h4>Dividends</h4>
-      <li className="description-item"><strong>Dividend Yield</strong><br></br> {props.dividendYield}</li>
-      <li className="description-item"><strong>Dividend Rate</strong><br></br>{props.dividendRate}</li>
+      <li className="description-item-analysis"><strong className="list-titles">Mean Target Price</strong><br></br>${props.targetMeanPrice}</li>
+      <li className="description-item-analysis"><strong className="list-titles">Median Target Price</strong><br></br>${props.targetMedianPrice}</li>
+      <h4 style={{textDecoration: "underline"}}>Dividends</h4>
+      <li className="description-item-analysis"><strong className="list-titles">Dividend Yield</strong><br></br> {props.dividendYield}%</li>
+      <li className="description-item-analysis"><strong className="list-titles">Dividend Rate</strong><br></br>{props.dividendRate}</li>
     </ul>
-    <ul className="main-list">
+    <ul className="main-list-analysis-2">
       <h3>Financials</h3>
-      <li className="description-item"><strong className="title-info">Revenue</strong><br></br> {props.totalRevenue}<p>100%</p></li>
-      <li className="description-item"><strong>Gross Profit</strong><br></br>{props.grossProfit}<p>{props.grossMargin}</p></li>
-      <li className="description-item"><strong>Operating Costs</strong><br></br> {props.operatingCashflow}<p>{props.operatingMargins}</p></li>
-      <li className="description-item"><strong>Net Income</strong><br></br> {props.operatingCashflow}<p>{props.profitMargin}</p></li>
+      <li className="description-item-analysis"><strong className="list-titles">Revenue</strong><br></br>${props.totalRevenue}<p style={{display: "inline", marginLeft: "60%"}}>100%</p></li>
+      <li className="description-item-analysis"><strong className="list-titles">Gross Profit</strong><br></br>${props.grossProfit}<p style={{display: "inline", marginLeft: "60%"}}>{props.grossMargin}%</p></li>
+      <li className="description-item-analysis"><strong className="list-titles">Operating Costs</strong><br></br>${props.operatingCashflow}<p style={{display: "inline", marginLeft: "65%"}}>{props.operatingMargins}%</p></li>
+      <li className="description-item-analysis"><strong className="list-titles">Net Income</strong><br></br>${props.operatingCashflow}<p style={{display: "inline", marginLeft: "65%"}}>{props.profitMargin}%</p></li>
     </ul>
-    <ul className="main-list">
+    <div className="main-list-analysis-3">
       <h3>Key Stats</h3>
-      <h4>Future Earnings</h4>
-      <li className="description-item"><strong>Forward PE</strong><br></br>
-       { props.forwardPE <= 15 ? (
-         <p>{props.forwardPE}<i className="fas fa-check" style={{color: "green"}}></i></p>
-       ) : (
-         <p>{props.forwardPE}<i className="fas fa-times" style={{color: "red"}}></i></p>
-       ) }
-      </li>
-      <li className="description-item"><strong>PEG</strong><br></br>
-       { props.PEG <= 1 ? (
-         <p>{props.PEG}<i className="fas fa-check" style={{color: "green"}}></i></p>
-       ) : (
-         <p>{props.PEG}<i className="fas fa-times" style={{color: "red"}}></i></p>
-       ) }
-      </li>
-      <h4>Debt Handling</h4>
-      <li className="description-item"><strong>Current Ratio</strong><br></br>
-       { props.currentRatio >= 1 ? (
-         <p>{props.currentRatio}<i className="fas fa-check" style={{color: "green"}}></i></p>
-       ) : (
-         <p>{props.currentRatio}<i className="fas fa-times" style={{color: "red"}}></i></p>
-       ) }
-      </li>
-      <li className="description-item"><strong>Quick Ratio</strong><br></br>
-       { props.quickRatio >= 1 ? (
-         <p>{props.quickRatio}<i className="fas fa-check" style={{color: "green"}}></i></p>
-       ) : (
-         <p>{props.quickRatio}<i className="fas fa-times" style={{color: "red"}}></i></p>
-       ) }
-      </li>
-      <li className="description-item"><strong>Debt to Equity</strong><br></br>
-       { props.debtToEquity <= 100 ? (
-         <p>{props.debtToEquity}<i className="fas fa-check" style={{color: "green"}}></i></p>
-       ) : (
-         <p>{props.debtToEquity}<i className="fas fa-times" style={{color: "red"}}></i></p>
-       ) }
-      </li>
-      <h4>Investor Return</h4>
-      <li className="description-item"><strong>ROA</strong><br></br>
-       { props.ROA >= 10 ? (
-         <p>{props.ROA}%<i className="fas fa-check" style={{color: "green"}}></i></p>
-       ) : (
-         <p>{props.ROA}%<i className="fas fa-times" style={{color: "red"}}></i></p>
-       ) }
-      </li>
-      <li className="description-item"><strong>ROE</strong><br></br>
-       { props.ROE >= 10 ? (
-         <p>{props.ROE}%<i className="fas fa-check" style={{color: "green"}}></i></p>
-       ) : (
-         <p>{props.ROE}%<i className="fas fa-times" style={{color: "red"}}></i></p>
-       ) }
-      </li>
-    </ul>
+      <ul className="stats-1">
+        <h4 style={{textDecoration: "underline"}}>Future Earnings</h4>
+        <li className="description-item-analysis"><strong className="list-titles">Forward PE</strong><br></br>
+         { props.forwardPE <= 15 ? (
+           <p className="show-results">{props.forwardPE}<i className="fa-icons fas fa-check" style={{color: "green"}}></i></p>
+         ) : (
+           <p className="show-results">{props.forwardPE}<i className="fa-icons fas fa-times" style={{color: "red"}}></i></p>
+         ) }
+        </li>
+        <li className="description-item-analysis"><strong className="list-titles">PEG</strong><br></br>
+         { props.PEG <= 1 ? (
+           <p className="show-results">{props.PEG}<i className="fa-icons fas fa-check" style={{color: "green"}}></i></p>
+         ) : (
+           <p className="show-results">{props.PEG}<i className="fa-icons fas fa-times" style={{color: "red"}}></i></p>
+         ) }
+        </li>
+        </ul>
+        <ul className="stats-2">
+          <h4 style={{textDecoration: "underline", display: "inline"}}>Debt Handling</h4>
+          <li className="description-item-analysis"><strong className="list-titles">Current Ratio</strong><br></br>
+           { props.currentRatio >= 1 ? (
+             <p className="show-results">{props.currentRatio}<i className="fa-icons fas fa-check" style={{color: "green"}}></i></p>
+           ) : (
+             <p className="show-results">{props.currentRatio}<i className="fa-icons fas fa-times" style={{color: "red"}}></i></p>
+           ) }
+          </li>
+          <li className="description-item-analysis"><strong className="list-titles">Quick Ratio</strong><br></br>
+           { props.quickRatio >= 1 ? (
+             <p className="show-results">{props.quickRatio}<i className="fa-icons fas fa-check" style={{color: "green"}}></i></p>
+           ) : (
+             <p className="show-results">{props.quickRatio}<i className="fa-icons fas fa-times" style={{color: "red"}}></i></p>
+           ) }
+          </li>
+          <li className="description-item-analysis"><strong className="list-titles">Debt to Equity</strong><br></br>
+           { props.debtToEquity <= 100 ? (
+             <p className="show-results">{props.debtToEquity}%<i className="fa-icons fas fa-check" style={{color: "green"}}></i></p>
+           ) : (
+             <p className="show-results">{props.debtToEquity}%<i className="fa-icons fas fa-times" style={{color: "red"}}></i></p>
+           ) }
+          </li>
+        </ul>
+        <ul className="stats-3">
+        <h4 style={{textDecoration: "underline"}}>Investor Return</h4>
+        <li className="description-item-analysis"><strong className="list-titles">ROA</strong><br></br>
+         { props.ROA >= 10 ? (
+           <p className="show-results">{props.ROA}%<i className="fa-icons fas fa-check" style={{color: "green"}}></i></p>
+         ) : (
+           <p className="show-results">{props.ROA}%<i className="fa-icons fas fa-times" style={{color: "red"}}></i></p>
+         ) }
+        </li>
+        <li className="description-item-analysis"><strong className="list-titles">ROE</strong><br></br>
+         { props.ROE >= 10 ? (
+           <p className="show-results">{props.ROE}%<i className="fa-icons fas fa-check" style={{color: "green"}}></i></p>
+         ) : (
+           <p className="show-results">{props.ROE}%<i className="fa-icons fas fa-times" style={{color: "red"}}></i></p>
+         ) }
+        </li>
+      </ul>
+    </div>
+
   </div>
 );
 

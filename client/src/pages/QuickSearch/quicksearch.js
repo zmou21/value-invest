@@ -100,10 +100,11 @@ class Stocks extends Component {
   //posts to api/route and database when a user favorites a stock
   postFavorite(event) {
     event.preventDefault();
-    console.log("post route hit in quicksearch");
+    //console.log("post route hit in quicksearch");
     API.postFavorite(this.state.companyName)
     .then(res => {
-      console.log('quicksearch data', res);
+      //console.log('quicksearch data', res);
+      alert(`You favorited ${this.state.companyName}`);
     })
     .catch(err => console.log(err));
   }
@@ -263,7 +264,8 @@ class Stocks extends Component {
           <a onClick={this.logout} id="logout" style={{cursor: "pointer"}}>Logout</a>
           <a href="/" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Home</a>
           <a href="/intrinsic" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Deep Analysis</a>
-          <h3 id="animate-name">Hello, {this.state.name}</h3>
+          <a href="/search" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Search Again</a>
+      <h3 id="animate-name">Hello, {this.state.name}</h3>
         </div>
         <div>
           {this.state.isHidden ? (
