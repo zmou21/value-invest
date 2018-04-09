@@ -145,10 +145,6 @@ class Home extends Component {
     return (
       <div>
         <div className="bgimg-1">
-          <div className="caption">
-              <h3 id="header-title">The Best Value Investing Platform on the Web!</h3>
-              <a href="/search"><button type="button" name="button">Get Started!</button></a>
-          </div>
           <div className="login">
             <div className="logo">
                 <img src={logo} alt="logo" width="200px" height="70px"/>
@@ -172,6 +168,10 @@ class Home extends Component {
                 />
               </span>
             </div>
+          </div>
+          <div className="caption">
+              <h3 id="header-title">The Best Value Investing Platform on the Web!</h3>
+              <a href="/search"><button type="button" name="button">Get Started!</button></a>
           </div>
         </div>
 
@@ -241,3 +241,9 @@ class Home extends Component {
 };
 
 export default Home;
+
+
+// <video autoPlay muted loop id="myVideo">
+//   <source src={Video} type="video/mp4"/>
+// </video>
+//

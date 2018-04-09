@@ -56,6 +56,7 @@ label {
   padding-top: 30px;
   text-align: center;
 }
+
 label .label-text {
   color: #9B9B9B;
   cursor: text;
@@ -68,6 +69,7 @@ label .label-text {
   transform: translateY(-34px);
   transition: all 0.3s;
 }
+
 label input {
   background-color: transparent;
   border: 0;
@@ -81,10 +83,12 @@ label input {
   transition: all 0.3s;
   width: 200px;
 }
+
 label input:focus {
   max-width: 100%;
   width: 400px;
 }
+
 label input:focus + .label-text {
   color: #F0F0F0;
   font-size: 13px;
@@ -93,6 +97,7 @@ label input:focus + .label-text {
   -webkit-transform: translateY(-74px);
   transform: translateY(-74px);
 }
+
 label input:valid + .label-text {
   font-size: 13px;
   -moz-transform: translateY(-74px);
@@ -114,6 +119,7 @@ button {
   transition: all 200ms;
   font-family: 'Josefin Sans', sans-serif;
 }
+
 button:hover, button:focus {
   background-color: white;
   color: #333333;
