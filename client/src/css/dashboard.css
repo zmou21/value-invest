@@ -4,18 +4,14 @@ body {
    background-image: url("https://www.planwallpaper.com/static/images/elegant-grey-illumination-background-presentations-powerpoint-backgrounds.jpg");
 }
 
-
-
 /*=============================================================*/
      /*================== Temporary Navbar ================== */
   /* background: linear-gradient(to top, #333399 0%, #00ffff 100%); */
 /*=============================================================*/
 
-
 .navbar {
   background-color: lightgrey;
 }
-
 
 /*=============================================================*/
      /*================== Grid Container ================== */
@@ -40,7 +36,6 @@ body {
 /*=============================================================*/
 /*================== Search and Input Fields Styling ================== */
 /*=============================================================*/
-
 
 ::selection {
    background: #212129;
@@ -94,7 +89,6 @@ body {
   cursor: pointer;
   /* transform: scale(1.25); */
 }
-
 
 #search-wrapper.active {}
 
@@ -445,11 +439,11 @@ h4 {
 }
 
 #myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 /* deep analysis styling  */
