@@ -10,8 +10,12 @@ If the user is interested in buy/don't buy recommendations, then they can perfor
 
 ## Technologies
 
-React.JS
-Node.JS
-Chart.JS
-Firebase(auth, passport.js auth in progress)
-MySQL
+-React.JS
+
+-Node.JS
+
+-Chart.JS
+
+-Firebase(auth, passport.js auth in progress)
+
+-MySQL
