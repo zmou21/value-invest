@@ -2,7 +2,7 @@ import React from "react";
 import QuickSearch from "./pages/QuickSearch";
 import Analysis from "./pages/Analysis";
 import Home from "./pages/Home";
-import Div from "./components/Dashboard";
+// import Div from "./components/Dashboard";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App = () => (

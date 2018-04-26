@@ -8,6 +8,11 @@
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1"
   },
+  "author": "Zack Moumen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zmou21/value-invest/issues"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
