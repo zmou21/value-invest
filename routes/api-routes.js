@@ -4,6 +4,18 @@ const router = require("express").Router();
 const yahooFinance = require('yahoo-finance');
 const cheerio = require("cheerio");
 const request = require("request");
+require("dotenv").config();
+
+
+//use process.env here in next update
+const api_key = process.env.API_KEY;
+//sandbox domain from mailgun
+const domain = 'sandboxa1b3865cf2934bd7b0d3ecd52df4f6f9.mailgun.org';
+//require mailgun npm
+const Mailgun = require('mailgun-js');
+
+console.log("process.env is being hit", process.env.API_KEY);
+console.log(api_key);
 
 let ticker = "";
 
@@ -102,6 +114,45 @@ let ticker = "";
       console.log("this is the result of get request", result);
       res.json(result);
     })
+  });
+
+  router.post("/submit", (req, res) => {
+    console.log("api route being hit", req.body.data.name);
+    const mailgun = new Mailgun({apiKey: api_key, domain: domain});
+
+    const data = {
+      from: req.body.data.email,
+      to: "zmoumen13@gmail.com",
+      subject: `New email from: ${req.body.data.name}`,
+      text: `Sender name: ${req.body.data.name} \nMessage: ${req.body.data.comment}`
+    };
+
+      db.Comments.create({
+        name: req.body.data.name,
+        email: req.body.data.email,
+        comment: req.body.data.comment
+      })
+      .then(function(newContact) {
+        //console.log(newContact);
+        // res.send("/contact.html");
+      })
+      .then(mailgun.messages().send(data, function(error, body){
+        //console.log("hello: ", data);
+        if(error) {
+          res.json({ error: error})
+          console.log(error);
+          //res.sendStatus(500)
+        }
+        else {
+          res.sendStatus(200);
+          //res.render("../public/contact")
+        }
+      })
+      )
+      .catch(function(err) {
+        // If an error occurs, send it back to the client
+        res.json(err);
+      });
   })
 
   // app.put("/api/vote", function(req, res) {
