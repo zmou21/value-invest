@@ -5,7 +5,7 @@ import "./login.css";
 import firebase from '../../firebase.js';
 import API from "../../utils/API";
 import logo from "../../images/logo.png";
-import Video from "../../images/test_1.mp4";
+// import Video from "../../images/test_1.mp4";
 
 
 let database = firebase.database();
@@ -20,6 +20,7 @@ class Home extends Component {
   this.handleInput = this.handleInput.bind(this);
   this.handleLoginSubmit =  this.handleLoginSubmit.bind(this);
   this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
+  this.handleFormSubmit = this.handleFormSubmit.bind(this);
   this.PostUserCredentials = this.PostUserCredentials.bind(this);
 
     this.state = {
@@ -122,7 +123,18 @@ class Home extends Component {
 
   handleFormSubmit() {
     //setup API route to submit comment and store in backend
-    alert("Form Submitted!")
+    const data = {
+      name: this.state.name,
+      email: this.state.email,
+      comment: this.state.comment
+    }
+    //console.log("Form Submitted!", data)
+
+    API.postComment(data)
+    .then(res => {
+      console.log("this is being posted", data);
+    })
+    .catch(err => console.log(err))
   }
 
   PostUserCredentials() {
@@ -216,8 +228,8 @@ class Home extends Component {
               name={this.state.name}
               comment={this.state.comment}
               email={this.state.email}
-              handleInput={this.handleInput}
-              handleSignUpSubmit={this.handleSignUpSubmit}
+              handleinput={this.handleInput}
+              handleformsubmit={this.handleFormSubmit}
             />
           </div>
         </div>

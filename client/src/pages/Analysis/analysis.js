@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Input, FormBtn } from "../../components/Form";
 import { Stockname, ShowAnalysis } from "../../components/Display";
-import Chart from "../../components/Charts";
+// import Chart from "../../components/Charts";
 import API from "../../utils/API";
 import firebase from '../../firebase.js';
 import "../../css/dashboard.css";
@@ -173,13 +173,18 @@ class Value extends Component {
       // })
     }
 
-    // this.setState({
-    //
-    // })
-    this.state.year10FcfValue = npvFcfArray[9] * valuationLastFCF;
+    const year10FCF = npvFcfArray[9] * valuationLastFCF;
 
-    this.state.companyValue = (this.state.year10FcfValue + this.state.totalNPVfcf + this.state.totalCash) - this.state.totalDebt;
+    this.setState({
+      year10FcfValue: year10FCF
+    })
+
+    const companyValueInt = (this.state.year10FcfValue + this.state.totalNPVfcf + this.state.totalCash) - this.state.totalDebt;
     //console.log("companyvalue", this.state.companyValue);
+
+    this.setState({
+      companyValue: companyValueInt
+    })
 
     let calculateIV = this.state.companyValue / this.state.sharesOutstanding;
     calculateIV = calculateIV.toFixed(2);
