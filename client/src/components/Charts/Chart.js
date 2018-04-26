@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { Line } from 'react-chartjs-2';
 
 class Chart extends Component{
-  constructor(props){
-    super(props);
-
-  }
 
   static defaultProps = {
     displayTitle:true,
@@ -37,3 +33,8 @@ class Chart extends Component{
 }
 
 export default Chart;
+
+// constructor(props){
+//   super(props);
+//
+// }
