@@ -132,7 +132,7 @@ class Home extends Component {
 
     API.postComment(data)
     .then(res => {
-      console.log("this is being posted", data);
+      //console.log("this is being posted", data);
     })
     .catch(err => console.log(err))
   }
