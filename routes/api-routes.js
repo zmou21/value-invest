@@ -127,7 +127,7 @@ let ticker = "";
       text: `Sender name: ${req.body.data.name} \nMessage: ${req.body.data.comment}`
     };
 
-      db.Comments.create({
+      db.Comment.create({
         name: req.body.data.name,
         email: req.body.data.email,
         comment: req.body.data.comment
