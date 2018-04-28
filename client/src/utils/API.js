@@ -111,7 +111,7 @@ export default {
     )
   },
   postComment: function(data) {
-    console.log("posting message", data);
+    //console.log("posting message", data);
     return (
       axios.post("/submit", {data: data})
       .catch(err => console.log(err))
