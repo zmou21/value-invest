@@ -265,6 +265,7 @@ class Stocks extends Component {
           <a href="/" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Home</a>
           <a href="/intrinsic" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Deep Analysis</a>
           <a href="/search" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Search Again</a>
+          <a href="/profile" style={{cursor: "pointer", padding: "1%", color: "white", textDecoration: "none"}}>Search Again</a>
       <h3 id="animate-name">Hello, {this.state.name}</h3>
         </div>
         <div>
