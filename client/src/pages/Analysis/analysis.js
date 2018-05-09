@@ -369,18 +369,32 @@ class Value extends Component {
 
     })
 
-    // API.getFinancialStatements(this.state.ticker)
-    // .then(res => {
-    //   console.log("api route for financial statements is being hit inside function");
-    //   console.log(res);
-    // })
-
-    API.getTest(this.state.ticker)
+//GET INCOME STATEMENT DATA ON CLICK
+    API.getRevenue(this.state.ticker)
     .then(res => {
       console.log("api route for quandl api is being hit");
       console.log(res.data.dataset.data);
       console.log(res.data.dataset.name);
     })
+
+    API.getGP(this.state.ticker)
+    .then(res => {
+      console.log("______gross profit______");
+      console.log(res.data.dataset.data);
+    })
+
+    API.getIntExp(this.state.ticker)
+    .then(res => {
+      console.log("______Interest Expense______");
+      console.log(res.data.dataset.data);
+    })
+
+    API.getNetIncome(this.state.ticker)
+    .then(res => {
+      console.log("______Net Income______");
+      console.log(res.data.dataset.data);
+    })
+
 
 
     API.getStockLogo(this.state.ticker)
