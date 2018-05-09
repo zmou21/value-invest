@@ -14,8 +14,8 @@ const domain = 'sandboxa1b3865cf2934bd7b0d3ecd52df4f6f9.mailgun.org';
 //require mailgun npm
 const Mailgun = require('mailgun-js');
 
-console.log("process.env is being hit", process.env.API_KEY);
-console.log(api_key);
+//console.log("process.env is being hit", process.env.API_KEY);
+//console.log(api_key);
 
 let ticker = "";
 
@@ -37,34 +37,36 @@ let ticker = "";
   //reserved
   router.post("/api/ticker", (req, res) => {
     console.log("------------------------------------");
-    console.log("api-route is being hit", req.body.ticker);
+    //console.log("api-route is being hit", req.body.ticker);
     ticker = req.body.ticker;
 
   });
 
   //reserved
   router.get("/api/search", (req, res) => {
-    console.log("get route is connecting");
+    //console.log("get route is connecting");
 
     yahooFinance.quote({
       symbol: ticker,
       modules: ['price', 'summaryDetail', "financialData", "defaultKeyStatistics"]       // optional; default modules.
     }, function(err, quote) {
-      console.log(`General quote = ${quote}`);
-      console.log(`forwardPE = ${quote.defaultKeyStatistics.forwardPE}`);
+      //console.log(`General quote = ${quote}`);
+      //console.log(`forwardPE = ${quote.defaultKeyStatistics.forwardPE}`);
       res.json(quote);
     });
   });
 
   //reserved
   router.get("/api/growth", (req, res) => {
-    console.log("get route 'api/growth' is connecting");
+    //console.log("get route 'api/growth' is connecting");
     let newSpan = "";
 
     request("https://finance.yahoo.com/quote/" + ticker + "/analysts?p=" + ticker, function(error, response, html) {
 
       var $ = cheerio.load(html);
       var results = [];
+      //console.log("yahoo growth data");
+      //console.log($);
 
       $("tr.BdT").each(function(i, element) {
         const span = $(element).find("td").find("span").text();
@@ -111,7 +113,7 @@ let ticker = "";
         email: req.params.email
       }
     }).then(function(result) {
-      console.log("this is the result of get request", result);
+      //console.log("this is the result of get request", result);
       res.json(result);
     })
   });
@@ -155,6 +157,42 @@ let ticker = "";
       });
   })
 
+  router.get("/api/10-data", (req, res) => {
+    console.log("get route 'api/10-data' is connecting");
+    let newSpan = "";
+    const uTicker = ticker.toUpperCase();
+    //console.log(uTicker);
+
+    request("https://amigobulls.com/stocks/" + uTicker + "/cash-flow/annual?t=ibc", function(error, response, html) {
+
+      var $ = cheerio.load(html);
+      var results = [];
+      //console.log($);
+      //console.log($.text);
+
+
+      $("table").each(function(i, element) {
+        const span = $(element).find("tbody").text();
+        console.log(span);
+
+        results.push({
+          span: span
+        });
+
+        // for(let i = 0; i < results.length; i++) {
+        //   if( results[i].span === "Next 5 Years (per annum)") {
+        //     //console.log("text is found", results[i].span);
+        //     newSpan = $(element).find("td").find("span").siblings().prevObject.prevObject[1].children[0].data;
+        //     newSpan = newSpan.replace(/[!@#$%^&*]/g, "");
+        //     //console.log("value is found", newSpan);
+        //     res.end(newSpan);
+        //   }
+        // }
+
+      });
+
+    });
+  });
   // app.put("/api/vote", function(req, res) {
   //   //to update the vote if need be
   //   db.Votes.update({
