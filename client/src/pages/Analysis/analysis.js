@@ -20,6 +20,8 @@ class Value extends Component {
     this.advancedYahooData = this.advancedYahooData.bind(this);
     this.stockRecommendation = this.stockRecommendation.bind(this);
     this.formatData = this.formatData.bind(this);
+    this.advancedData = this.advancedData.bind(this);
+
 
     this.state = {
       isHidden: true,
@@ -271,6 +273,18 @@ class Value extends Component {
     })
   }
 
+  //*********************************************
+  //get advanced financial data
+  //*********************************************
+  advancedData(ticker) {
+    console.log("being hit outside of the function");
+    API.getFinancialStatements(this.state.ticker)
+    .then(res => {
+      console.log("api route is being hit inside function");
+      console.log(res);
+    })
+  }
+
 
   //*********************************************
   //function so that when form is submitted it calls the API route
@@ -354,6 +368,20 @@ class Value extends Component {
       this.formatData();
 
     })
+
+    // API.getFinancialStatements(this.state.ticker)
+    // .then(res => {
+    //   console.log("api route for financial statements is being hit inside function");
+    //   console.log(res);
+    // })
+
+    API.getTest(this.state.ticker)
+    .then(res => {
+      console.log("api route for quandl api is being hit");
+      console.log(res.data.dataset.data);
+      console.log(res.data.dataset.name);
+    })
+
 
     API.getStockLogo(this.state.ticker)
     .then(res => {
