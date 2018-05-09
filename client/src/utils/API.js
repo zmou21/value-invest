@@ -116,5 +116,26 @@ export default {
       axios.post("/submit", {data: data})
       .catch(err => console.log(err))
     )
+  },
+  getFinancialStatements: function(ticker) {
+    return (
+      axios.get("/api/10-data", ticker)
+      .then(function(response) {
+        console.log(response);
+        return response;
+      })
+      .catch(err => console.log(err))
+    )
+  },
+  getTest: function(ticker) {
+    return (
+    axios
+      .get("https://www.quandl.com/api/v3/datasets/SF0/" + ticker +"_RETEARN_MRY.json?api_key=Wpp1zCt7Wzey7N383JNf")
+      .then(function(response) {
+          console.log(response);
+          return response;
+      })
+      .catch(err => console.log(err))
+    );
   }
 };
